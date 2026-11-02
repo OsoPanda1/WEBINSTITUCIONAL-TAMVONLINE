@@ -1,129 +1,174 @@
 {
   "@context": "https://schema.org",
-  "@type": "ResearchOrganization",
-  "name": "TAMV Online Network",
-  "alternateName": [
-    "TAMV",
-    "Red TAMV Online Network"
-  ],
-  "description": "Red mexicana independiente de investigación y desarrollo en tecnología, ciencia abierta y memoria territorial, con sede declarada en Mineral del Monte, Hidalgo. Agrupa a investigadores y desarrolladores sin afiliación académica institucional y publica su producción con DOI bajo criterios de evidencia documentados. No constituye una persona moral y no declara acreditación ni respaldo de terceros.",
-  "slogan": "Conocimiento que perdura",
-  "foundingDate": "2020",
-  "legalName": null,
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Mineral del Monte",
-    "addressRegion": "Hidalgo",
-    "addressCountry": "MX"
-  },
-  "areaServed": [
-    { "@type": "Country", "name": "México" },
-    { "@type": "Place", "name": "América Latina" }
-  ],
-  "knowsAbout": [
-    "Ciencia abierta",
-    "Identificadores persistentes",
-    "Memoria territorial",
-    "Inteligencia artificial responsable",
-    "Software e infraestructura abierta",
-    "Curaduría de evidencia"
-  ],
-  "knowsLanguage": ["es-MX", "en"],
-  "founder": {
-    "@type": "Person",
-    "name": "Edwin Oswaldo Castillo Trejo",
-    "alternateName": "Anubis Villaseñor",
-    "jobTitle": "Fundador y Director General de Proyectos",
-    "identifier": "https://orcid.org/0009-0008-5050-1539",
-    "sameAs": ["https://github.com/OsoPanda1"],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Mineral del Monte",
-      "addressRegion": "Hidalgo",
-      "addressCountry": "MX"
+  "@graph": [
+    {
+      "@type": "ResearchOrganization",
+      "name": "TAMV Online Network",
+      "alternateName": [
+        "TAMV",
+        "Red TAMV Online Network"
+      ],
+      "description": "Red mexicana independiente de investigación y desarrollo en tecnología, ciencia abierta y memoria territorial, con sede declarada en Mineral del Monte, Hidalgo. Agrupa a investigadores y desarrolladores sin afiliación académica institucional y publica su producción con DOI bajo criterios de evidencia documentados. No constituye una persona moral y no declara acreditación ni respaldo de terceros.",
+      "slogan": "Conocimiento que perdura",
+      "foundingDate": "2020",
+      "legalName": null,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mineral del Monte",
+        "addressRegion": "Hidalgo",
+        "addressCountry": "MX"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "México"
+        },
+        {
+          "@type": "Place",
+          "name": "América Latina"
+        }
+      ],
+      "knowsAbout": [
+        "Ciencia abierta",
+        "Identificadores persistentes",
+        "Memoria territorial",
+        "Inteligencia artificial responsable",
+        "Software e infraestructura abierta",
+        "Curaduría de evidencia"
+      ],
+      "knowsLanguage": [
+        "es-MX",
+        "en"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Edwin Oswaldo Castillo Trejo",
+        "alternateName": "Anubis Villaseñor",
+        "jobTitle": "Fundador y Director General de Proyectos",
+        "identifier": "https://orcid.org/0009-0008-5050-1539",
+        "sameAs": [
+          "https://github.com/OsoPanda1"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Mineral del Monte",
+          "addressRegion": "Hidalgo",
+          "addressCountry": "MX"
+        }
+      },
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "name": "ROR ID de la organización",
+          "propertyID": "ROR",
+          "value": "no asignado",
+          "description": "Solicitud en preparación. Sin duplicado conocido en la API de ROR a 2026-11-01."
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "ISNI de la organización",
+          "propertyID": "ISNI",
+          "value": "no existe",
+          "description": "La organización no tiene ISNI propio."
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Wikidata de la organización",
+          "propertyID": "Wikidata",
+          "value": "no existe",
+          "description": "Sin entidad Wikidata a 2026-11-01. Identificador opcional para un registro ROR."
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Crossref Funder ID",
+          "propertyID": "fundref",
+          "value": "no existe",
+          "description": "La red no administra fondos, por lo que no aplica como financista."
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "ORCID del fundador",
+          "propertyID": "ORCID",
+          "value": "0009-0008-5050-1539",
+          "description": "Identificador PERSONAL del fundador. No es un identificador de la organización y no debe tratarse como tal."
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "ISNI atribuido al fundador",
+          "propertyID": "ISNI",
+          "value": "0000000531699229",
+          "description": "El tipo de entidad no se pudo verificar en isni.org ni en el SRU de OCLC a 2026-11-01. No se publica como identificador organizacional."
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "GeoNames de la sede",
+          "propertyID": "GeoNames",
+          "value": "3523180",
+          "description": "Mineral del Monte, Hidalgo, México. Clase P/PPLA2, verificado contra Wikidata Q9033309."
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "email": "anubiscastillo@visitarealdelmonte.online",
+          "contactType": "institutional contact",
+          "availableLanguage": [
+            "Spanish",
+            "English"
+          ]
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "anubiscastillo@visitarealdelmonte.online",
+          "contactType": "corrections to metadata",
+          "availableLanguage": [
+            "Spanish",
+            "English"
+          ]
+        }
+      ],
+      "subjectOf": [
+        {
+          "@type": "CreativeWork",
+          "name": "Compendium of Technological Sovereignty: The TAMV MD-X4 Heptafederated Kernel",
+          "identifier": "https://zenodo.org/records/19436662"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Documento Magno Canónico: RDM Digital Hub y el Paradigma TAMV",
+          "identifier": "https://osf.io/t3wmy/"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "RDM Digital Hub & TAMV Paradigm: A Sovereign Technological Framework for Distributed Intelligence Systems",
+          "identifier": "https://osf.io/rd47q/"
+        }
+      ],
+      "sameAs": [],
+      "@id": "#tamv-org"
+    },
+    {
+      "@type": "CodeRepository",
+      "@id": "https://github.com/OsoPanda1/WEBINSTITUCIONAL-TAMVONLINE",
+      "name": "WEBINSTITUCIONAL-TAMVONLINE",
+      "codeRepository": "https://github.com/OsoPanda1/WEBINSTITUCIONAL-TAMVONLINE",
+      "url": "https://github.com/OsoPanda1/WEBINSTITUCIONAL-TAMVONLINE",
+      "producer": {
+        "@id": "#tamv-org"
+      },
+      "maintainer": {
+        "@id": "#tamv-org"
+      },
+      "programmingLanguage": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python"
+      ],
+      "runtimePlatform": "Navegador; Node.js y Python solo en las herramientas de construcción",
+      "license": "https://opensource.org/licenses/MIT",
+      "dateCreated": "2026-11-01",
+      "description": "Fuente del sitio web institucional de TAMV Online Network: 24 páginas estáticas en español e inglés, el pipeline de idiomas y el generador de la marca. El MIT cubre únicamente el código; los logotipos y sus derivados quedan reservados (archivo NOTICE) y las tipografías autoalojadas siguen bajo SIL Open Font License 1.1."
     }
-  },
-  "identifier": [
-    {
-      "@type": "PropertyValue",
-      "name": "ROR ID de la organización",
-      "propertyID": "ROR",
-      "value": "no asignado",
-      "description": "Solicitud en preparación. Sin duplicado conocido en la API de ROR a 2026-11-01."
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "ISNI de la organización",
-      "propertyID": "ISNI",
-      "value": "no existe",
-      "description": "La organización no tiene ISNI propio."
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Wikidata de la organización",
-      "propertyID": "Wikidata",
-      "value": "no existe",
-      "description": "Sin entidad Wikidata a 2026-11-01. Identificador opcional para un registro ROR."
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Crossref Funder ID",
-      "propertyID": "fundref",
-      "value": "no existe",
-      "description": "La red no administra fondos, por lo que no aplica como financista."
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "ORCID del fundador",
-      "propertyID": "ORCID",
-      "value": "0009-0008-5050-1539",
-      "description": "Identificador PERSONAL del fundador. No es un identificador de la organización y no debe tratarse como tal."
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "ISNI atribuido al fundador",
-      "propertyID": "ISNI",
-      "value": "0000000531699229",
-      "description": "El tipo de entidad no se pudo verificar en isni.org ni en el SRU de OCLC a 2026-11-01. No se publica como identificador organizacional."
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "GeoNames de la sede",
-      "propertyID": "GeoNames",
-      "value": "3523180",
-      "description": "Mineral del Monte, Hidalgo, México. Clase P/PPLA2, verificado contra Wikidata Q9033309."
-    }
-  ],
-  "contactPoint": [
-    {
-      "@type": "ContactPoint",
-      "email": "anubiscastillo@visitarealdelmonte.online",
-      "contactType": "institutional contact",
-      "availableLanguage": ["Spanish", "English"]
-    },
-    {
-      "@type": "ContactPoint",
-      "email": "anubiscastillo@visitarealdelmonte.online",
-      "contactType": "corrections to metadata",
-      "availableLanguage": ["Spanish", "English"]
-    }
-  ],
-  "subjectOf": [
-    {
-      "@type": "CreativeWork",
-      "name": "Compendium of Technological Sovereignty: The TAMV MD-X4 Heptafederated Kernel",
-      "identifier": "https://zenodo.org/records/19436662"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Documento Magno Canónico: RDM Digital Hub y el Paradigma TAMV",
-      "identifier": "https://osf.io/t3wmy/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "RDM Digital Hub & TAMV Paradigm: A Sovereign Technological Framework for Distributed Intelligence Systems",
-      "identifier": "https://osf.io/rd47q/"
-    }
-  ],
-  "sameAs": []
+  ]
 }

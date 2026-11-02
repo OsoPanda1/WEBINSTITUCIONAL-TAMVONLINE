@@ -38,10 +38,11 @@ web/                    raíz del sitio (esto es lo que se sirve)
   index.html …          12 páginas en español
   en/                   12 páginas en inglés, espejo 1:1
   assets/               site.css, site.js, fonts/, brand/, mark.svg
-  organization.json     Schema.org ResearchOrganization
+  organization.json     Schema.org: @graph con la ResearchOrganization y un
+                        CodeRepository que apunta a este mismo repo
   ror-record-draft.json borrador de registro ROR v2.1
 i18n/                   glosario, lista de páginas, locales, allowlist de residuos
-tools/                  los dos generadores (ver abajo)
+tools/                  los dos generadores y los parches de migración (ver abajo)
 ```
 
 No hay framework, ni `node_modules`, ni build de pasos ocultos: un `git clone`
@@ -86,6 +87,15 @@ se modifican: se exponen tal cual en la página de identidad, con su descargo.
 `tools/redesign-patch.mjs` es el parche de migración que aplicó la última
 revisión visual a las 24 páginas; se conserva para que el cambio sea
 reproducible, no para volver a ejecutarlo.
+
+### 3. Enlace de la fuente — `tools/repo-link-patch.mjs`
+
+Une el sitio con este repositorio, en los tres sitios donde un curador puede
+buscarlo: el pie de las 22 páginas con lista de registros (etiquetado
+«Repositorio del sitio» / «Site source», junto a «Cuenta de GitHub», que es del
+fundador y no de la red), un nodo `CodeRepository` en el JSON-LD de las dos
+portadas y en `web/organization.json`, y una frase en la página del expediente
+ROR. Es idempotente: si el enlace ya está, no duplica.
 
 ## Reproducir el sitio
 
