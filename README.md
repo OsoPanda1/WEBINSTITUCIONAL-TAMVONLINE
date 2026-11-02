@@ -120,6 +120,25 @@ Idempotente: volver a ejecutarlo no cambia nada. El 403 que ese enlace devuelve
 a los scripts de enlaces es un bloqueo de *user agent* del WAF de COPE, no un
 enlace roto; se verificó en navegador.
 
+### 5. Descubrimiento del mapa del sitio — `tools/sitemap-link-patch.mjs`
+
+El host de Qoder Sites asigna el `Content-Type` de los archivos estáticos con una
+tabla propia de extensiones (html, css, js, json, txt, svg, webp, jpg, woff2
+salen bien) en la que **no está `.xml`**, que cae en `application/octet-stream`.
+La cabecera la fija el Worker al subir el artefacto y no hay parámetro de
+`prepare_site`, manifiesto ni ruta de función que la cambie para la URL canónica:
+las funciones viven bajo `/functions/v1/app` y no pueden sustituir a un archivo
+estático que existe. Como el protocolo de mapas no exige la cabecera, lo que sí
+puede afirmar el documento es su propio tipo: las 24 páginas llevan
+
+```html
+<link rel="sitemap" type="application/xml" title="Mapa del sitio" href="/sitemap.xml">
+```
+
+la relación registrada en RFC 6579, junto al `Sitemap:` absoluto de `robots.txt`.
+El script es idempotente y `tools/i18n.mjs` valida ahora las `href` que empiezan
+por `/` contra la raíz de `web/`, no contra el directorio de la página.
+
 ## Reproducir el sitio
 
 ```

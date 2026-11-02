@@ -406,7 +406,13 @@ export function createSite({ webDir, i18nDir, allowFile, patternFile } = {}) {
         if (/^(https?:|mailto:|tel:|data:|#)/i.test(raw)) continue;
         const clean = raw.split('#')[0].split('?')[0];
         if (!clean) continue;
-        if (!existsSync(resolve(WEB, posix.join(dirOf(p.rel), clean)))) {
+        /* Una href que empieza por / es relativa a la raíz del sitio, no al
+           directorio de la página: `/sitemap.xml` apunta al archivo raíz también
+           desde `en/`. Resolverla contra la página producía falsos rotos. */
+        const target = clean.startsWith('/')
+          ? resolve(WEB, clean.replace(/^\/+/, ''))
+          : resolve(WEB, posix.join(dirOf(p.rel), clean));
+        if (!existsSync(target)) {
           errors.push(`[${p.code}] ${p.rel} -> enlace roto: ${raw}`);
         }
       }
