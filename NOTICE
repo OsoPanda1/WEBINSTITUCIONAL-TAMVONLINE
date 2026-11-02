@@ -1,0 +1,40 @@
+NOTICE — alcance de la licencia / scope of the licence
+=======================================================
+
+El archivo `LICENSE` (MIT) se aplica al **código** de este repositorio: las
+páginas HTML, la hoja de estilos, `web/assets/site.js`, los registros JSON de
+máquina y los generadores de `tools/`.
+
+Las **tipografías** autoalojadas bajo `web/assets/fonts/` (Fraunces e IBM Plex
+Sans/Mono, subconjuntos latin) están bajo la **SIL Open Font License 1.1**, que
+no se modifica ni se sustituye por el MIT de arriba. Se distribuyen sin cambios
+respecto de los ficheros generados; la licencia completa está en
+<https://openfontlicense.org>.
+
+Quedan **excluidos** del MIT y se mantienen todos los derechos reservados:
+
+- `web/assets/brand/tamv-wordmark.webp` — logotipo oficial TAMV ONLINE.
+- `web/assets/brand/isabella-hummingbird.webp` — emblema ISABELLA VILLASEÑOR V6.
+- `web/assets/mark.svg`, `web/assets/brand/tamv-mark.webp`,
+  `web/assets/brand/tamv-lockup.webp`, `web/assets/brand/emblem-mark.webp` y
+  `web/assets/brand/og-cover.jpg` — derivados y composiciones de los anteriores.
+- La prosa del sitio (los textos legibles por personas dentro de las páginas
+  HTML), que no es software: puede citarse con atribución mientras se respete lo
+  que la propia página declara.
+
+Estos signos se publican en el repositorio por una sola razón: que el sitio
+pueda inspeccionarse de punta a punta, incluido lo que el sitio muestra. No
+constituyen una autorización de uso, reproducción ni adaptación.
+
+---
+
+The `LICENSE` file (MIT) covers the **code** of this repository: HTML pages,
+CSS, `web/assets/site.js`, the machine-readable records, and the generators in
+`tools/`. The self-hosted webfonts under `web/assets/fonts/` (Fraunces, IBM Plex
+Sans, IBM Plex Mono) stay under the SIL Open Font License 1.1 and are not
+relicensed here.
+
+Excluded from MIT and all rights reserved: the two institutional marks and every
+crop or composition derived from them (`web/assets/brand/`), and the site's
+prose. They are published here only so that the website can be inspected in full.
+Publishing them is not a licence to use them.

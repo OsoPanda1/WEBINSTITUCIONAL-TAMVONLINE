@@ -99,16 +99,21 @@ Para servirlo en local, cualquier servidor estático sobre `web/`.
 
 ## Licencia
 
-El **código** (HTML, CSS, JS y los scripts de `tools/`) está bajo MIT: ver
-[`LICENSE`](LICENSE).
+Tres cosas distintas, declaradas en [`NOTICE`](NOTICE):
 
-**No** está bajo esa licencia:
+- El **código** (HTML, CSS, `site.js`, los registros JSON y los scripts de
+  `tools/`) está bajo **MIT**: ver [`LICENSE`](LICENSE).
+- Las **tipografías** autoalojadas (`web/assets/fonts/`: Fraunces, IBM Plex Sans
+  y IBM Plex Mono) siguen bajo **SIL Open Font License 1.1**; aquí no se
+  relicencian.
+- Los **logotipos** y todas las artes derivadas de ellos (`web/assets/brand/` y
+  `web/assets/mark.svg`) están **reservados**. Se publican para que el sitio
+  pueda inspeccionarse entero, no para autorizar su uso. La prosa del sitio
+  tampoco es software: se cita con atribución, como cualquier texto firmado.
 
-- Los dos logotipos y las artes de marca derivadas (`web/assets/brand/`): son
-  signos institucionales y quedan reservados. Se publican para poder inspeccionar
-  el sitio, no para su uso.
-- La prosa del sitio: se reproduce en la web y puede citarse con atribución
-  (CC BY 4.0) salvo que se indique lo contrario en la propia página.
+El punto importa porque un repositorio sin licencia visible no es reutilizable,
+y un repositorio que licencía por error la marca de su propia institución es
+peor que uno silencioso.
 
 ## Contexto y limitaciones
 
