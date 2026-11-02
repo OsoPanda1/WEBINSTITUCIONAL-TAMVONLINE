@@ -48,6 +48,21 @@ function patchPage({ abs, rel, code }) {
   const fixed = html.replace(/assets\/assets\/brand\//g, 'assets/brand/');
   if (fixed !== html) { html = fixed; done.push('prefijo-duplicado-corregido'); }
 
+  // P0 — migración al encuadre recortado en píxeles (tools/brand-build.py).
+  // El recorte por `object-fit` cortaba «TECNOLOGÍA AVANZADA MEXICANA
+  // VERSÁTIL» a media altura según el ancho del contenedor. Sólo se sustituye
+  // el lockup corto de cabecera y pie (alt="TAMV Online Network"); el panel de
+  // identidad conserva el logotipo oficial completo con su descargo.
+  let swapped = 0;
+  html = html.replace(
+    /<img class="brand-art brand-art--lockup" src="([^"]*?)brand\/tamv-wordmark\.webp" alt="TAMV Online Network">/g,
+    (_m, pfx) => { swapped++; return `<img class="brand-art brand-art--mark" src="${pfx}brand/tamv-mark.webp" alt="TAMV Online Network">`; });
+  const heroSwap = html.replace(
+    /(<figure class="hero-figure">\s*<img class="brand-art brand-art--emblem" src="[^"]*?brand\/)isabella-hummingbird\.webp"/,
+    (_m, a) => { swapped++; return `${a}emblem-mark.webp"`; });
+  if (heroSwap !== html) html = heroSwap;
+  if (swapped) done.push(`encuadre-pixels(${swapped})`);
+
   // P1 — color de tema alineado con el negro azabache del lockup.
   if (html.includes('content="#08111c"')) {
     html = html.replace('<meta name="theme-color" content="#08111c">', '<meta name="theme-color" content="#03060b">');
@@ -92,21 +107,21 @@ function patchPage({ abs, rel, code }) {
     done.push('twitter:image');
   }
 
-  // P4 — cabecera: lockup oficial en lugar de la marca geométrica.
+  // P4 — cabecera: el lockup corto (TAMV + ONLINE) en lugar de la marca geométrica.
   const brandRe = /(<a class="brand" href="index.html">\s*)(<img src="([^"]*?)mark\.svg"[^>]*>)(\s*)(<span class="brand-text">[\s\S]*?<\/span>\s*<\/span>)/;
   const brand = html.match(brandRe);
   if (brand) {
-    html = html.replace(brandRe, (_m, a, _img, pfx) => `${a}<img class="brand-art brand-art--lockup" src="${pfx}brand/tamv-wordmark.webp" alt="TAMV Online Network">`);
+    html = html.replace(brandRe, (_m, a, _img, pfx) => `${a}<img class="brand-art brand-art--mark" src="${pfx}brand/tamv-mark.webp" alt="TAMV Online Network">`);
     done.push('brand-cabecera');
-  } else if (html.includes('brand-art--lockup')) done.push('brand-cabecera ya');
+  } else if (html.includes('brand-art--mark')) done.push('brand-cabecera ya');
   else done.push('!brand-cabecera: estructura no reconocida');
 
-  // P5 — pie: lockup + lema, sin duplicar la marca.
+  // P5 — pie: lockup corto + lema, sin duplicar la marca.
   const footRe = /(<div class="footer-brand">\s*)(<img src="([^"]*?)mark\.svg"[^>]*>)(\s*)<span><b>([^<]*)<\/b><span class="mono-note">([^<]*)<\/span><\/span>/;
   const foot = html.match(footRe);
   if (foot) {
     html = html.replace(footRe, (_m, a, _img, pfx, _s, name, tagline) =>
-      `${a}<img class="brand-art brand-art--lockup" src="${pfx}brand/tamv-wordmark.webp" alt="${name}">\n          <span class="tagline">${tagline}</span>`);
+      `${a}<img class="brand-art brand-art--mark" src="${pfx}brand/tamv-mark.webp" alt="${name}">\n          <span class="tagline">${tagline}</span>`);
     done.push('brand-pie');
   } else if (html.includes('class="tagline"')) done.push('brand-pie ya');
   else done.push('!brand-pie: estructura no reconocida');
@@ -123,7 +138,7 @@ function patchPage({ abs, rel, code }) {
         : 'Emblema ISABELLA VILLASEÑOR V6 — colibrí cuántico de corazón luminoso';
       html = html.replace(re, (_m, nl, aside) =>
         `\n${' '.repeat(8)}<figure class="hero-figure">\n` +
-        `          <img class="brand-art brand-art--emblem" src="${isEn ? '../' : ''}assets/brand/isabella-hummingbird.webp" alt="${alt}">\n` +
+        `          <img class="brand-art brand-art--emblem" src="${isEn ? '../' : ''}assets/brand/emblem-mark.webp" alt="${alt}">\n` +
         `          <figcaption>${cap}</figcaption>\n` +
         `        </figure>${nl}${aside}`);
       done.push('emblema-hero');

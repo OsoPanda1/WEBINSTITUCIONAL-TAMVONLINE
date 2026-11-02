@@ -11,6 +11,10 @@
 mineral\s+del\s+monte
 real\s+del\s+monte
 tecnolog[íi]a\s+avanzada\s+mexicana\s+vers[áa]til
+# Cuarta línea del logotipo oficial. Se cita con su grafía original en la ficha
+# de identidad visual (ES y EN) precisamente para señalar que el sitio no la
+# reproduce en ningún otro sitio ni la defiende como hecho.
+organismo\s+nacional\s+l[íi]der\s+en\s+inteligencia\s+nativa\s+extensible
 conocimiento\s+que\s+perdura
 director\s+general\s+de\s+proyectos
 ceo\s+fundador

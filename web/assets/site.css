@@ -159,8 +159,8 @@ abbr[title] { text-decoration: underline dotted; cursor: help; }
   flex-wrap: wrap;
 }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--chrome-1); }
-.brand img, .brand svg { width: 38px; height: 38px; border-radius: 9px; display: block; }
-.brand .brand-art--lockup { width: 156px; height: auto; border-radius: 0; }
+.brand img:not(.brand-art), .brand svg { width: 38px; height: 38px; border-radius: 9px; display: block; }
+.brand .brand-art--mark { width: min(100%, 168px); flex: 0 1 auto; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.02; }
 .brand-text b {
   font-family: var(--serif); font-size: 1.24rem; font-weight: 600;
@@ -216,28 +216,25 @@ nav.primary a[aria-current="page"] {
 }
 
 /* ── arte de marca (logotipos opacos sobre fondo oscuro) ───── */
-/* Los dos PNG/JPG originales no tienen canal alfa: se mezclan con
-   `screen` para que el negro desaparezca sobre la superficie oscura. */
+/* Los dos originales no tienen canal alfa: se mezclan con `screen` para que el
+   negro desaparezca sobre la superficie oscura. Los encuadres se hacen en
+   píxeles con tools/brand-build.py —no con `object-fit`— para que un cambio de
+   ancho nunca parta una línea de texto por la mitad. */
 .brand-art {
   display: block;
+  height: auto;
+  border-radius: 0;
   mix-blend-mode: screen;
   filter: drop-shadow(0 0 26px rgba(77, 166, 255, 0.22));
 }
-/* Recorte por CSS: deja fuera del encuadre las líneas de tagline del
-   lockup oficial, que son autoafirmativas y no verificables. */
-.brand-art--lockup {
-  width: min(100%, 340px);
-  aspect-ratio: 1000 / 352;
-  object-fit: cover;
-  object-position: 50% 0%;
-}
-.brand-art--emblem {
-  width: 100%;
-  aspect-ratio: 1280 / 566;
-  object-fit: cover;
-  object-position: 50% 0%;
-}
-.brand-art--full { width: 100%; height: auto; mix-blend-mode: screen; }
+/* TAMV + ONLINE. El encuadre corto, para la cabecera y el pie. */
+.brand-art--mark { width: min(100%, 168px); }
+/* TAMV + ONLINE + «tecnología avanzada mexicana versátil». */
+.brand-art--lockup { width: min(100%, 340px); }
+/* Colibrí sin la línea de nombre. */
+.brand-art--emblem { width: 100%; }
+/* Pieza de identidad: el logotipo oficial completo, tal como está registrado. */
+.brand-art--full { width: 100%; }
 
 /* ── hero ──────────────────────────────────────────────────── */
 .hero {
@@ -264,8 +261,9 @@ nav.primary a[aria-current="page"] {
 }
 .hero-figure {
   position: relative; margin: 0 0 22px;
-  padding: 6px;
+  padding: 6px; text-align: center;
 }
+.hero-figure .brand-art--emblem { width: auto; max-width: min(100%, 330px); height: auto; margin-inline: auto; }
 .hero-figure::before {
   content: ""; position: absolute; inset: -18% -12%;
   background: radial-gradient(closest-side, rgba(111, 224, 255, 0.24), transparent 72%);
@@ -340,7 +338,7 @@ nav.primary a[aria-current="page"] {
 .record-card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; align-items: baseline; }
 .record-card dt {
   font-family: var(--mono); font-size: 0.665rem; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--chrome-4);
+  text-transform: uppercase; color: var(--chrome-3);
 }
 .record-card dd { margin: 0; font-size: 0.93rem; color: #dbe7f3; }
 .record-card dd b { color: #fff; font-weight: 600; }
@@ -510,10 +508,11 @@ ol.steps > li::before {
 .page-head .lede { color: #b9cbdd; max-width: 68ch; font-size: 1.06rem; margin: 0; }
 .breadcrumb {
   font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--chrome-4); margin-bottom: 18px;
+  text-transform: uppercase; color: var(--chrome-3); margin-bottom: 18px;
 }
 .breadcrumb a { color: var(--azure-soft); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; color: #fff; }
+/* Decorativo: el separador no transmite información, puede ir bajo de contraste. */
 .breadcrumb span { color: var(--chrome-4); margin: 0 8px; }
 
 /* ── definición de dos columnas ────────────────────────────── */
@@ -564,13 +563,13 @@ dl.fields dd .sub { display: block; font-size: 0.82rem; color: var(--ink-3); mar
 .footer-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(auto-fit, minmax(140px, 1fr)); gap: 26px 32px; }
 .site-footer h3 {
   font-family: var(--mono); font-size: 0.645rem; letter-spacing: 0.19em;
-  text-transform: uppercase; color: var(--chrome-4); margin-bottom: 12px; font-weight: 500;
+  text-transform: uppercase; color: var(--chrome-3); margin-bottom: 12px; font-weight: 500;
 }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin-bottom: 7px; }
 .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 16px; }
-.footer-brand img { width: 38px; height: 38px; border-radius: 9px; }
-.footer-brand .brand-art--lockup { width: 186px; height: auto; border-radius: 0; }
+.footer-brand img:not(.brand-art) { width: 38px; height: 38px; border-radius: 9px; }
+.footer-brand .brand-art--mark { width: min(100%, 196px); }
 .footer-brand > span { display: flex; flex-direction: column; line-height: 1.25; }
 .footer-brand b {
   font-family: var(--serif); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.05em;
@@ -585,7 +584,7 @@ dl.fields dd .sub { display: block; font-size: 0.82rem; color: var(--ink-3); mar
 .footer-bottom {
   margin-top: 32px; padding-top: 18px; border-top: 1px solid rgba(126, 147, 171, 0.2);
   display: flex; flex-wrap: wrap; gap: 8px 26px;
-  font-family: var(--mono); font-size: 0.685rem; letter-spacing: 0.06em; color: var(--chrome-4);
+  font-family: var(--mono); font-size: 0.685rem; letter-spacing: 0.06em; color: var(--chrome-3);
 }
 
 /* ── utilidades ────────────────────────────────────────────── */
@@ -619,10 +618,10 @@ pre.seal code, pre.ror-draft code, pre.seal-example code { color: inherit; }
   padding: 30px 28px 22px; display: flex; flex-direction: column; gap: 16px;
 }
 .brand-cell img { width: 100%; height: auto; }
-.brand-cell .brand-art--lockup { width: min(100%, 250px); margin-inline: auto; }
+.brand-cell .brand-art { width: auto; max-width: min(100%, 400px); height: auto; margin-inline: auto; }
 .brand-cell figcaption {
   font-family: var(--mono); font-size: 0.68rem; line-height: 1.6; letter-spacing: 0.04em;
-  color: var(--chrome-4); margin-top: auto; padding-top: 14px;
+  color: var(--chrome-3); margin-top: auto; padding-top: 14px;
   border-top: 1px solid rgba(126, 147, 171, 0.2);
 }
 .brand-cell figcaption b { color: var(--chrome-2); font-weight: 500; }
