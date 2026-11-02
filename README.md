@@ -97,6 +97,29 @@ fundador y no de la red), un nodo `CodeRepository` en el JSON-LD de las dos
 portadas y en `web/organization.json`, y una frase en la página del expediente
 ROR. Es idempotente: si el enlace ya está, no duplica.
 
+### 4. Corrección de evidencias citadas — `tools/evidence-links-patch.mjs`
+
+Ajusta cuatro afirmaciones del sitio que no resistían la verificación en vivo
+(mismo script para el par ES/EN, 13 archivos):
+
+- **DOI.** El DOI de versión `10.5281/zenodo.19436662` está registrado en DataCite
+  y figura como *findable*, pero su ruta de aterrizaje en Zenodo devuelve 404
+  incluso en navegador. Se cita el DOI de concepto `10.5281/zenodo.19436661`, que
+  sí resuelve, y se enlaza aparte el registro `19436662`. La nota que explica el
+  404 conserva el DOI de versión escrito como texto, no como enlace.
+- **COPE.** El enlace a `publicationethics.org/core-practices` apuntaba a una
+  página que redirige con otro nombre. Ahora enlaza directo a *Principles of
+  Transparency and Best Practice in Scholarly Publishing* y consigna «última
+  revisión 2026-10-29, COPE con DOAJ, OASPA y WAME», leído de la propia página.
+- **OSF.** `api.osf.io/v2/search/` dejó de existir, así que el conteo citado no
+  era reproducible. Se enlazan los dos nodos concretos (`t3wmy`, `rd47q`).
+- **`publishingPrinciples`.** La portada en español declaraba como principios la
+  página en inglés; ahora cada idioma apunta a la suya.
+
+Idempotente: volver a ejecutarlo no cambia nada. El 403 que ese enlace devuelve
+a los scripts de enlaces es un bloqueo de *user agent* del WAF de COPE, no un
+enlace roto; se verificó en navegador.
+
 ## Reproducir el sitio
 
 ```
