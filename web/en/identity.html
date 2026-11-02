@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TRI Identity: member identifier and verifiable traceability — TAMV Online Network</title>
+<meta name="description" content="TAMV Research Identity (TRI): internal member identifier, roles and profile; ORCID, ISNI, DOI and ROR stack; hash seal, RFC 3161 anchoring and limits.">
+<meta property="og:description" content="TAMV Research Identity (TRI): internal member identifier, roles and profile; ORCID, ISNI, DOI and ROR stack; hash seal, RFC 3161 anchoring and limits.">
+<meta property="og:image" content="https://tamvonline-t78x4mdi9wa.qoder.website/assets/brand/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The chrome TAMV ONLINE wordmark and the hummingbird emblem on a deep blue field, with the line "Independent research, technology and memory network".">
+<meta name="theme-color" content="#03060b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TRI Identity: member identifier and verifiable traceability — TAMV Online Network">
+<link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  pre.seal {
+    background: var(--deep); color: #d7e7f4; border-radius: 10px; border: 1px solid #22405a;
+    padding: 18px 20px; overflow-x: auto; font-family: var(--mono); font-size: 0.78rem;
+    line-height: 1.6; margin: 0 0 18px;
+  }
+  pre.seal code { background: none; border: 0; padding: 0; color: inherit; }
+  .vs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 18px; }
+</style>
+<!-- i18n:generated:start -->
+  <meta property="og:locale" content="en_US">
+  <link rel="alternate" hreflang="es-MX" href="https://tamvonline-t78x4mdi9wa.qoder.website/identificador.html">
+  <link rel="alternate" hreflang="en" href="https://tamvonline-t78x4mdi9wa.qoder.website/en/identity.html">
+  <link rel="alternate" hreflang="x-default" href="https://tamvonline-t78x4mdi9wa.qoder.website/identificador.html">
+  <link rel="canonical" href="https://tamvonline-t78x4mdi9wa.qoder.website/en/identity.html">
+<!-- i18n:generated:end -->
+</head>
+<body>
+<a class="skip-link" href="#contenido">Skip to main content</a>
+
+<div class="strip">
+  <div class="wrap">
+    <span><b>TAMV Research Identity</b></span>
+    <span>Internal identifier · traceability · attribution</span>
+    <span>Does not replace ORCID, ISNI, DOI or ROR</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img class="brand-art brand-art--lockup" src="../assets/brand/tamv-wordmark.webp" alt="TAMV Online Network">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false">Menu</button>
+    <nav class="primary" aria-label="Main navigation">
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./organization.html">Institution</a></li>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./outputs.html">Output</a></li>
+        <li><a href="./quality.html">Quality</a></li>
+        <li><a href="./identity.html">TRI Identity</a></li>
+        <li><a href="./membership.html">Membership</a></li>
+        <li><a href="./ror.html">ROR Application</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Select language">
+      <a href="../identificador.html" hreflang="es-MX">ES</a>
+      <a href="./identity.html" hreflang="en" aria-current="true">EN</a>
+    </div>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <div class="page-head">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="index.html">Home</a><span>/</span>TRI Identity</p>
+      <h1>TAMV Research Identity</h1>
+      <p class="lede">The TRI is the network's internal identifier for membership, collaboration and academic traceability. This page defines its format, its roles, its stack of external identifiers, and with surgical precision what the cryptographic seal that accompanies it can and cannot prove.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">01 — Definition</span><h2>What a TRI is and what it is not</h2></div>
+        <p>An identifier is only useful if someone else can resolve it and if its scope is bounded. These two lists are the bounding.</p>
+      </div>
+      <div class="grid g2">
+        <div class="note ok">
+          <h4>The TRI is</h4>
+          <ul class="plain check mb-0">
+            <li>Internal identifier for membership, collaboration, affiliation and academic traceability.</li>
+            <li>A link between person, affiliation and output: profile, roles, projects, datasets, software, reviews.</li>
+            <li>A mechanism of institutional traceability and a register of verifiable contributions.</li>
+            <li>A tool of internal academic governance, with informed consent as a condition.</li>
+            <li>The anchor of the integrity seal when a proposal enters the review flow.</li>
+          </ul>
+        </div>
+        <div class="note block">
+          <h4>The TRI is not</h4>
+          <ul class="plain gap mb-0">
+            <li>A university degree, academic grade or professional certification.</li>
+            <li>Academic accreditation or a substitute for ORCID, ISNI, DOI or ROR.</li>
+            <li>An automatic guarantee of quality: email verification and identity verification are different things.</li>
+            <li>Authorization to claim authorship without real contribution.</li>
+            <li>Civil identity or immigration document.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">02 — Format</span><h2>Structure of the identifier</h2></div>
+        <p>Legible, sequential and with no embedded personal information: the identifier must not reveal name, email or any sensitive datum.</p>
+      </div>
+<pre class="seal"><code>TRI-TAMV-YYYY-XXXX
+
+TRI    → TAMV Research Identity
+TAMV   → Organización emisora
+YYYY   → Año de alta institucional
+XXXX   → Número correlativo único</code></pre>
+      <p class="mono-note">Example of form: <code>TRI-TAMV-2026-0001</code>. It is an illustrative pattern of the specification, not the record of a registered enrollment.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">03 — Roles</span><h2>Seven institutional functions</h2></div>
+        <p>The roles describe functions within the network. They do not represent academic hierarchy and are not equivalent to an academic appointment.</p>
+      </div>
+      <div class="table-scroll" data-label="TRI roles">
+        <table>
+          <thead><tr><th scope="col">Code</th><th scope="col">Role</th><th scope="col">Main function</th><th scope="col">Evidence required</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">TRI-F</td><td>Founder / institutional custodian</td><td>Scientific direction, representation and custody of the canon</td><td>Founder's ORCID record <span class="tag tag-ok">Confirmed</span></td></tr>
+            <tr><td class="mono">TRI-R</td><td>Researcher</td><td>Design, execution, analysis and documentation of research</td><td>Citable output with affiliation <span class="tag tag-warn">Outstanding</span></td></tr>
+            <tr><td class="mono">TRI-D</td><td>Developer / research engineering</td><td>Software, infrastructure, data, automation and reproducibility</td><td>Repository with license and versions <span class="tag tag-warn">Outstanding</span></td></tr>
+            <tr><td class="mono">TRI-E</td><td>Editor / reviewer</td><td>Methodological, editorial and integrity review</td><td>Archived review minutes <span class="tag tag-block">No minutes today</span></td></tr>
+            <tr><td class="mono">TRI-C</td><td>Specialized collaborator</td><td>Specific disciplinary contributions</td><td>Contribution declaration <span class="tag tag-warn">Outstanding</span></td></tr>
+            <tr><td class="mono">TRI-A</td><td>Affiliate / external collaborator</td><td>One-off participation in projects or outputs</td><td>Proof of participation <span class="tag tag-warn">Outstanding</span></td></tr>
+            <tr><td class="mono">TRI-S</td><td>Student researcher</td><td>Formative participation under supervision</td><td>Supervision declared by a TRI-R <span class="tag tag-warn">Outstanding</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:16px">Only the <code>TRI-F</code> role has a verifiable public evidence today. The others are defined in the specification and with no persons assigned: publishing a board with fictitious members would be the most expensive error this site could commit.</p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">04 — Profile</span><h2>What a public TRI profile contains</h2></div>
+        <p>A profile is born private. It is published only with express consent and approval, and it may be corrected or withdrawn.</p>
+      </div>
+      <div class="grid g2">
+        <dl class="fields">
+          <dt>Identity</dt><dd>Full name · professional alias, if applicable</dd>
+          <dt>Function</dt><dd>TRI role · area of specialization · membership status · enrollment date</dd>
+          <dt>Affiliation</dt><dd><code>TAMV Online Network</code> · Mineral del Monte, Hidalgo, México</dd>
+          <dt>External</dt><dd>ORCID, if it exists · ISNI, if it exists · GitHub or GitLab · portfolio or LinkedIn</dd>
+          <dt>Output</dt><dd>Active projects · publications and outputs · verifiable contributions</dd>
+          <dt>Ethics</dt><dd>Declaration of conflicts of interest · activity history in the network</dd>
+        </dl>
+<pre class="seal"><code>TRI-TAMV-2026-0001        <span class="c">// patrón de ejemplo, no un alta real</span>
+
+Nombre: Edwin Oswaldo Castillo Trejo
+Alias profesional: Anubis Villaseñor
+Rol: Fundador y Director Científico            [TRI-F]
+Áreas: IA, sistemas distribuidos, arquitectura
+       de software, ciencia abierta, patrimonio digital
+Afiliación: TAMV Online Network, Mineral del Monte,
+            Hidalgo, México
+ORCID: 0009-0008-5050-1539                       [verificable]
+ISNI: 0000000531699229                          [personal,
+            tipo de entidad sin verificar]
+Estado: Activo
+Fecha de alta: [pendiente de fijar en el registro]
+Proyectos: ISABELLA GENESIS · TAMV Sovereign Fabric
+           Architecture · RDM Digital Hub
+Conflictos de interés: [declaración pendiente de publicar]</code></pre>
+      </div>
+      <div class="rule-label">TRI rules</div>
+      <ul class="plain">
+        <li>Requires the member's informed consent to exist and for each published datum.</li>
+        <li>It may be corrected, updated or withdrawn at the holder's request.</li>
+        <li>It must be linked to public evidence whenever possible; a non-verifiable datum is marked as declared.</li>
+        <li>It grants no automatic authorship and does not replace external evaluation or peer review.</li>
+        <li>It is used together with ORCID, DOI and —when it exists— ROR, never in their place.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">05 — Stack</span><h2>Each identifier answers a different question</h2></div>
+        <p>None overlaps with another. The complete row —member, person, work, organization— is what makes a reference auditable.</p>
+      </div>
+<pre class="seal"><code>TRI      → identidad interna del miembro TAMV
+ORCID    → identidad persistente del investigador
+ISNI     → identidad normalizada del contribuyente
+DOI      → identidad persistente del output
+ROR      → identidad persistente de la organización</code></pre>
+      <div class="table-scroll" data-label="Identifier comparison">
+        <table>
+          <thead><tr><th scope="col">Identifier</th><th scope="col">Who issues it</th><th scope="col">What it identifies</th><th scope="col">Real scope of the guarantee</th></tr></thead>
+          <tbody>
+            <tr><td><b>ORCID</b></td><td>ORCID iD Foundation</td><td>Researcher</td><td>Public record of authorship. The network can <em>link</em> an ORCID via OAuth, and that verifies control of the account, not the truth of the data.</td></tr>
+            <tr><td><b>ISNI</b></td><td>ISNI Ltd. and assigning agencies</td><td>Person or entity</td><td>Disambiguation between names. It does not certify activity or quality.</td></tr>
+            <tr><td><b>DOI</b></td><td>Agencies: DataCite, Crossref, Zenodo</td><td>Citable object: work, dataset, software</td><td>Persistence of the link and the declared metadata. It does not declare peer review or the truth of the content.</td></tr>
+            <tr><td><b>ROR ID</b></td><td>ROR community</td><td>Research organization</td><td>Normalized affiliation across systems. Its assignment is a decision of ROR curation.</td></tr>
+            <tr><td><b>TRI</b></td><td>TAMV Online Network</td><td>Member within the network</td><td>Internal resolution and documentary traceability. Its authority is that of the network itself, which is why it relies on the four above.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note" style="margin-top:20px">
+        <h4>Minimum metadata for every output</h4>
+        <p class="mb-0"><code>Affiliation: TAMV Online Network</code> · <code>City: Mineral del Monte</code> · <code>Region: Hidalgo</code> · <code>Country: MX</code> · <code>Author ORCID</code> when it exists · <code>Author TRI</code> where applicable · <code>Institution ROR</code> when assigned. Crossref accepts ROR IDs in affiliation metadata, and that is the reason the organizational identifier is worth the effort.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">06 — Seal</span><h2>The integrity seal, without mystery</h2></div>
+        <p>The network computes a cryptographic digest over a canonical serialization of the dossier. Anyone can recompute it and compare.</p>
+      </div>
+<pre class="seal"><code>objeto           : propuesta, dataset, software o documento
+serialización    : orden canónico de campos, UTF-8, sin metadatos variables
+algoritmo        : SHA-512 → resumen de contenido, no firma
+digest publicado : 3f9c1e…&lt;hex&gt;        // ejemplo de forma, no un valor real
+verificación     : un tercero recalcula el digest sobre los mismos bytes
+                   y lo compara; la coincidencia prueba igualdad de contenido</code></pre>
+      <div class="vs-grid">
+        <div class="note ok">
+          <h4>What the seal does demonstrate</h4>
+          <ul class="plain check mb-0">
+            <li>That <b>this exact copy</b> of the dossier was not altered relative to the one that was sealed.</li>
+            <li>That two different versions differ, without needing to read them in full.</li>
+            <li>That the version examined by a reviewer can be audited on any later date.</li>
+            <li>That the comparison is public: it does not require trusting a network server.</li>
+          </ul>
+        </div>
+        <div class="note warn">
+          <h4>What the seal does NOT demonstrate</h4>
+          <ul class="plain gap mb-0">
+            <li><b>Authorship.</b> A hash does not say who wrote anything; that is provided by ORCID or an external record.</li>
+            <li><b>Antiquity.</b> Without an RFC 3161 timestamp from an authority, the digest does not prove that the document existed on a given date.</li>
+            <li><b>Non-repudiation.</b> It is not a qualified electronic signature and has no legal validity in itself.</li>
+            <li><b>Originality.</b> The same text uploaded by another person produces the same digest: a match does not resolve who was first without external temporal anchoring.</li>
+            <li><b>Truthfulness.</b> Nothing cryptographic validates that the claims in the document are correct.</li>
+            <li><b>Irresistible presence.</b> No technology embeds an affiliation inside another person's file in a way that cannot be removed.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:18px">These limits are documented in the project itself: the digest of a snapshot confirms that the bytes match under a declared serialization rule; it is not a signature, nor a trusted timestamp, nor a root of trust, nor a certification.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">07 — Anchoring</span><h2>Making traceability auditable by third parties</h2></div>
+        <p>Here the proposal moves from "internal record" to evidence that can be checked without trusting TAMV. Each mechanism covers a different threat.</p>
+      </div>
+      <div class="table-scroll" data-label="External anchoring mechanisms">
+        <table>
+          <thead><tr><th scope="col">Mechanism</th><th scope="col">What it anchors</th><th scope="col">Who guarantees it</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr><td>Deposit with DOI in Zenodo or Figshare</td><td>Public existence of a version and its metadata</td><td>Independent registration agency</td><td><span class="tag tag-ok">In use</span></td></tr>
+            <tr><td><a href="https://www.rfc-editor.org/rfc/rfc3161.html" rel="noopener noreferrer" target="_blank">RFC 3161 timestamp</a> on the digest</td><td>That the digest existed before a date, with external authority: a TSA token links the digest to a trusted instant.</td><td>Accredited sealing authority</td><td><span class="tag tag-warn">To be integrated · requires provider</span></td></tr>
+            <tr><td>Append-only public record, with digest chaining</td><td>That the published history was not rewritten</td><td>Verifiable within the network itself; stronger if anchored externally</td><td><span class="tag tag-warn">Designed, not deployed</span></td></tr>
+            <tr><td>Anchoring in a third-party archive with deletion protection</td><td>Durable public presence of the dossier</td><td>The third party that archives</td><td><span class="tag tag-neutral">Optional, low cost</span></td></tr>
+            <tr><td>Author's signature over the digest with own key</td><td>Non-repudiation of who sealed</td><td>The key's chain of trust</td><td><span class="tag tag-neutral">Requires key management</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note ok" style="margin-top:20px">
+        <h4>The combination that does work</h4>
+        <p class="mb-0">Content digest + RFC 3161 timestamp + DOI of the deposit + author ORCID verified by OAuth. Four pieces, each with a different guarantor. That set is auditable; a hash alone, stored in the network's database, is not.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">08 — Integrity</span><h2>Originality and plagiarism: what the network can and cannot do</h2></div>
+        <p>Plagiarism prevention is a problem of detection and of documentary consequence. Cryptography provides one piece, not the solution.</p>
+      </div>
+      <div class="grid g2">
+        <div class="note ok">
+          <h4>Achievable</h4>
+          <ul class="plain check mb-0">
+            <li>An earlier public date: a DOI or an external timestamp establish that a version existed before.</li>
+            <li>A documented provenance chain among source, author, version and review.</li>
+            <li>An integrity filter at admission, which blocks detected plagiarism before publishing.</li>
+            <li>Withdrawal and public notice when a work turns out to be plagiarized or plagiarizes, with traceability of the change.</li>
+            <li>Verifiable contributions per person, which make visible whose is what.</li>
+          </ul>
+        </div>
+        <div class="note block">
+          <h4>Not achievable</h4>
+          <ul class="plain gap mb-0">
+            <li>Preventing someone from copying a public document: an identifier does not prevent unauthorized reproduction.</li>
+            <li>Detecting all plagiarism without access to comparable corpora or external similarity tools.</li>
+            <li>Substituting legal action for copyright: the network documents; the legal framework is determined by the applicable laws.</li>
+            <li>Turning the possession of a TRI into scientific authority.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">09 — Actual status</span><h2>What works today</h2></div>
+        <p>The distinction between designed, implemented and deployed is the part that contributes most credibility before a registry.</p>
+      </div>
+      <div class="table-scroll" data-label="TRI implementation status">
+        <table>
+          <thead><tr><th scope="col">Component</th><th scope="col">Status</th><th scope="col">What is missing</th></tr></thead>
+          <tbody>
+            <tr><td>TRI specification: format, roles and rules</td><td><span class="tag tag-ok">Documented</span></td><td>Publish the canonical serialization rule as a document with a DOI.</td></tr>
+            <tr><td>Local digest computation and its verification</td><td><span class="tag tag-ok">Implemented</span></td><td>It remains verification of byte equality, not certification.</td></tr>
+            <tr><td>Persistent member register</td><td><span class="tag tag-warn">In code, unconfirmed</span></td><td>Applied migrations, approved retention and real browser testing.</td></tr>
+            <tr><td>ORCID linking via OAuth</td><td><span class="tag tag-warn">Configurable</span></td><td>Provider credentials and a tested flow; a hand-entered ORCID remains <em>declared</em>.</td></tr>
+            <tr><td>Enrollment of the first TRI</td><td><span class="tag tag-block">Not issued</span></td><td>Open call and a review process with minutes.</td></tr>
+            <tr><td>RFC 3161 timestamp</td><td><span class="tag tag-block">Not integrated</span></td><td>Sealing provider and independent verification of the token.</td></tr>
+            <tr><td>Resolvable public directory</td><td><span class="tag tag-block">No profiles</span></td><td>Members with approved express consent.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn" style="margin-top:20px">
+        <h4>Privacy and minimal data</h4>
+        <p class="mb-0">The TRI stores only name, role, area, contact email, public identifiers, contributions and membership status. It does not store identity documents, home addresses, personal phone numbers, financial data or biometric information. Profiles are born private and are published only with express consent and approval. This site is static: it installs no analytics and no cookies. Data processing in the member register remains subject to legal review in line with the applicable Mexican legislation and the terms of the providers; the network does not declare certified compliance with any privacy framework.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="rule-label">Continue</div>
+      <div class="grid g3">
+        <a class="card card-link" href="membership.html"><span class="idx">Membership</span><h3>Requesting a TRI</h3><p>What is declared, what is reviewed and what membership does not grant.</p></a>
+        <a class="card card-link" href="quality.html"><span class="idx">Quality</span><h3>TQAF and TQAF-10 standards</h3><p>What each level requires before publishing.</p></a>
+        <a class="card card-link" href="governance.html"><span class="idx">Governance</span><h3>Bodies, ethics and Isabella AI</h3><p>Who reviews, with what limits and how one appeals.</p></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img class="brand-art brand-art--lockup" src="../assets/brand/tamv-wordmark.webp" alt="TAMV Online Network">
+          <span class="tagline">Knowledge that endures</span>
+        </div>
+        <p>Independent research, technology and memory network. Origin and location: Mineral del Monte, Hidalgo, Mexico.</p>
+        <p class="mono-note mb-0">Presence on this site does not constitute accreditation or third-party endorsement.</p>
+      </div>
+      <div>
+        <h3>Institutional</h3>
+        <ul>
+          <li><a href="organization.html">Institution profile</a></li>
+          <li><a href="governance.html">Governance and ethics</a></li>
+          <li><a href="ror.html">ROR Application</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Science</h3>
+        <ul>
+          <li><a href="research.html">Research lines</a></li>
+          <li><a href="outputs.html">Publications and deposits</a></li>
+          <li><a href="quality.html">TQAF academic quality</a></li>
+          <li><a href="identity.html">TRI Identity</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Join</h3>
+        <ul>
+          <li><a href="call.html">Open call</a></li>
+          <li><a href="membership.html">Membership conditions</a></li>
+          <li><a href="contact.html">Contact and corrections</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Registries</h3>
+        <ul>
+          <li><a href="https://orcid.org/0009-0008-5050-1539" rel="noopener noreferrer" target="_blank">Founder's ORCID</a></li>
+          <li><a href="https://zenodo.org/records/19436662" rel="noopener noreferrer" target="_blank">Zenodo</a></li>
+          <li><a href="https://osf.io/t3wmy/" rel="noopener noreferrer" target="_blank">OSF</a></li>
+          <li><a href="https://github.com/OsoPanda1" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year-from>2020–2026</span> TAMV Online Network</span>
+      <span>Made in Mexico</span>
+      <a href="mailto:anubiscastillo@visitarealdelmonte.online">anubiscastillo@visitarealdelmonte.online</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

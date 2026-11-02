@@ -1,0 +1,91 @@
+{
+  "$comment": "Registro de idiomas del sitio institucional TAMV Online Network. El selector de idioma y los enlaces hreflang se generan desde aqui; ninguna pagina los escribe a mano. Solo los idiomas con status 'live' aparecen en el selector y en los alternates. Anadir un idioma es: anadir la entrada aqui, crear web/<code>/*.html y ejecutar 'node tools/i18n.mjs all'. El bloque aria da las etiquetas del menu y del selector en el propio idioma: si falta, el generador escribe las en ingles.",
+  "site": {
+    "base_url": "https://tamvonline-t78x4mdi9wa.qoder.website",
+    "base_url_note": "URL de la publicacion en Qoder Sites, verificada contra el host devuelto por update_site el 2026-11-01. El servidor anade el sufijo fijo de la cuenta (-t78x4mdi9wa), por eso la direccion no puede ser tamvonline.qoder.website a secas. Cambiar el subdominio obliga a regenerar canonicals, hreflang, robots.txt y sitemap.xml y a publicar una accion nueva. Cuando el dominio institucional propio este apuntado correctamente, se reemplaza este valor y se repite el ciclo.",
+    "default_locale": "es",
+    "x_default_locale": "es"
+  },
+  "locales": [
+    {
+      "code": "es",
+      "hreflang": "es-MX",
+      "label": "ES",
+      "name_native": "Espanol (Mexico)",
+      "lang_attr": "es-MX",
+      "og_locale": "es_MX",
+      "dir": "ltr",
+      "prefix": "",
+      "status": "live",
+      "role": "source",
+      "aria": { "nav": "Navegación principal", "switch": "Seleccionar idioma" },
+      "note": "Idioma fuente. Todas las demas traducciones se derivan de este texto y deben revisarse contra el."
+    },
+    {
+      "code": "en",
+      "hreflang": "en",
+      "label": "EN",
+      "name_native": "English",
+      "lang_attr": "en",
+      "og_locale": "en_US",
+      "dir": "ltr",
+      "prefix": "en/",
+      "status": "live",
+      "role": "translation",
+      "aria": { "nav": "Main navigation", "switch": "Select language" },
+      "note": "Idioma de trabajo para curadores ROR, editores de revista y posibles patrocinadores institucionales."
+    },
+    {
+      "code": "pt",
+      "hreflang": "pt-BR",
+      "label": "PT",
+      "name_native": "Portugues (Brasil)",
+      "lang_attr": "pt-BR",
+      "dir": "ltr",
+      "prefix": "pt/",
+      "status": "planned",
+      "role": "translation",
+      "aria": { "nav": "Navegação principal", "switch": "Selecionar idioma" },
+      "note": "Siguiente candidato: mayor comunidad academica de la region y publico real de la convocatoria. No publicar hasta tener revision humana."
+    },
+    {
+      "code": "fr",
+      "hreflang": "fr",
+      "label": "FR",
+      "name_native": "Francais",
+      "lang_attr": "fr",
+      "dir": "ltr",
+      "prefix": "fr/",
+      "status": "planned",
+      "role": "translation",
+      "aria": { "nav": "Navigation principale", "switch": "Choisir la langue" },
+      "note": "Util para redes de ciencia abierta del Sur Global francophone. Pendiente de presupuesto de revision."
+    },
+    {
+      "code": "zh",
+      "hreflang": "zh-Hans",
+      "label": "ZH",
+      "name_native": "简体中文",
+      "lang_attr": "zh-Hans",
+      "dir": "ltr",
+      "prefix": "zh/",
+      "status": "planned",
+      "role": "translation",
+      "aria": { "nav": "主导航", "switch": "选择语言" },
+      "note": "Registro academico en chino requiere revisor nativo. Una traduccion automatica de marcos eticos dana la credibilidad que se intenta construir."
+    },
+    {
+      "code": "ar",
+      "hreflang": "ar",
+      "label": "AR",
+      "name_native": "العربية",
+      "lang_attr": "ar",
+      "dir": "rtl",
+      "prefix": "ar/",
+      "status": "planned",
+      "role": "translation",
+      "aria": { "nav": "التنقل الرئيسي", "switch": "اختيار اللغة" },
+      "note": "Implica trabajo extra de diseno: el atributo dir=rtl exige revisar la hoja de estilos completa antes de publicar."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "$comment": "Mapa canonico de paginas. 'file' da el nombre de archivo por idioma; el generador lo usa para reescribir enlaces internos y para verificar que cada idioma tiene todas las paginas. 'nav' ordena el menu principal: null = fuera del menu. Cambiar el orden aqui reordena el menu en todas las paginas de todos los idiomas.",
+  "nav_order": ["index", "organization", "research", "outputs", "quality", "identity", "membership", "ror"],
+  "pages": {
+    "index": {
+      "file": { "es": "index.html", "en": "index.html" },
+      "nav": { "es": "Inicio", "en": "Home" }
+    },
+    "organization": {
+      "file": { "es": "organizacion.html", "en": "organization.html" },
+      "nav": { "es": "Institución", "en": "Institution" }
+    },
+    "research": {
+      "file": { "es": "investigacion.html", "en": "research.html" },
+      "nav": { "es": "Investigación", "en": "Research" }
+    },
+    "outputs": {
+      "file": { "es": "produccion.html", "en": "outputs.html" },
+      "nav": { "es": "Producción", "en": "Output" }
+    },
+    "quality": {
+      "file": { "es": "calidad.html", "en": "quality.html" },
+      "nav": { "es": "Calidad", "en": "Quality" }
+    },
+    "identity": {
+      "file": { "es": "identificador.html", "en": "identity.html" },
+      "nav": { "es": "Identidad TRI", "en": "TRI Identity" }
+    },
+    "membership": {
+      "file": { "es": "membresia.html", "en": "membership.html" },
+      "nav": { "es": "Membresía", "en": "Membership" }
+    },
+    "ror": {
+      "file": { "es": "ror.html", "en": "ror.html" },
+      "nav": { "es": "Solicitud ROR", "en": "ROR Application" }
+    },
+    "governance": {
+      "file": { "es": "gobernanza.html", "en": "governance.html" },
+      "nav": null
+    },
+    "call": {
+      "file": { "es": "convocatoria.html", "en": "call.html" },
+      "nav": null
+    },
+    "contact": {
+      "file": { "es": "contacto.html", "en": "contact.html" },
+      "nav": null
+    },
+    "notfound": {
+      "file": { "es": "404.html", "en": "404.html" },
+      "nav": null
+    }
+  }
+}

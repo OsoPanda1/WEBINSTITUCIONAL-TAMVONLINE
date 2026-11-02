@@ -1,0 +1,74 @@
+{
+  "$comment_schema": "Borrador de registro en el esquema ROR v2.1 (https://github.com/ror-community/ror-schema/blob/master/ror_schema_v2_1.json). No es un envío: los campos marcados como pendientes no deben enviarse hasta estar confirmados. ROR no solicita JSON en la plantilla de issue, pero entregar metadatos con la forma del esquema vigente acelera la curaduría.",
+  "$comment_ultima_verificacion": "2026-11-01",
+  "names": [
+    {
+      "value": "TAMV Online Network",
+      "types": ["ror_display"],
+      "lang": "en"
+    },
+    {
+      "value": "TAMV",
+      "types": ["acronym"]
+    }
+  ],
+  "$comment_aliases": "Las variantes 'TAMV ONLINE' y 'tamv online network' detectadas en depósitos NO se solicitan como alias hasta decidir si se normalizan o se retiran. Un alias incorrecto persiste en el registro durante décadas.",
+  "types": ["other"],
+  "$comment_types": "'other' mientras la red no esté constituida. Si se constituye como persona moral sin fines de lucro, el tipo recomendado pasa a 'nonprofit'.",
+  "status": "active",
+  "$comment_status": "Corregir antes de enviar: el empleo del fundador en ORCID figura cerrado en 2026-01-01.",
+  "established": 2020,
+  "$comment_established": "Fecha declarada a partir del inicio del empleo registrado en ORCID. No existe acta constitutiva.",
+  "domains": [],
+  "$comment_domains": "PENDIENTE Y BLOQUEANTE, pero el diagnóstico anterior estaba equivocado y se corrige con evidencia. Comprobado el 2026-11-01 por resolución DNS: 'visitarealdelmonte.online' SÍ existe y SÍ resuelve — registro A (una IP de Hostinger, anotada en las notas locales de esta auditoría, no en un archivo público) y registros MX mx1/mx2.hostinger.com. Lo que no hace es servir el sitio: una petición HTTP al dominio responde con una redirección a https://isabella-ai-genesis.vercel.app/, que devuelve 404 DEPLOYMENT_NOT_FOUND. Es decir, no hay un dominio inexistente, hay un dominio propio correctamente comprado y mal apuntado. 'domains' sigue vacío a propósito: citar ante ROR un dominio que devuelve 404 es peor que no citar ninguno, porque el curador lo va a abrir. Remedación previa, en el panel de Hostinger: eliminar la redirección huérfana y apuntar el dominio al despliegue del sitio. Los subdominios de vercel.app y odoo.com no acreditan independencia y no se solicitan.",
+  "$comment_correccion_previa": "La nota anterior afirmaba NXDOMAIN citando 'tamvonline-weboficial.com'. Ese dominio no es el que la blueprint declara; la comprobación se había hecho sobre el nombre equivocado.",
+  "links": [
+    {
+      "type": "website",
+      "value": "https://DOMINIO-PROPIO-PENDIENTE/organizacion.html"
+    }
+  ],
+  "external_ids": [],
+  "$comment_external_ids": "ROR acepta fundref, grid, isni y wikidata. Ninguno es obligatorio. GRID ya no se cura. El ISNI publicado es personal y su tipo de entidad no está verificado.",
+  "locations": [
+    {
+      "geonames_id": 3523180,
+      "geonames_details": {
+        "name": "Mineral del Monte",
+        "continent_code": "NA",
+        "continent_name": "North America",
+        "country_code": "MX",
+        "country_name": "Mexico",
+        "country_subdivision_code": "HID",
+        "country_subdivision_name": "Hidalgo"
+      }
+    }
+  ],
+  "$comment_locations": "lat y lng los deriva ROR del GeoNames. Alternativa administrativa: municipio GeoNames 8582059 (AADM2).",
+  "relationships": [],
+  "$comment_relationships": "v2.1 expresa la independencia con el arreglo vacío; el vocabulario 'independent' de v1 ya no aplica. Solo se añadiría 'related' con una contraparte recíproca verificada.",
+  "$solicitud": {
+    "canal_principal": "https://curation-request.ror.org",
+    "canal_alternativo": "https://github.com/ror-community/ror-updates/issues/new?template=add-organization-to-ror.md",
+    "verificacion_duplicados": {
+      "fecha": "2026-11-01",
+      "consulta": "https://api.ror.org/organizations?query.names=%22TAMV%22",
+      "resultado": "0 registros"
+    },
+    "plazo_publicado": "Los cambios aprobados se despliegan en 4 a 6 semanas según la cola de curaduría.",
+    "dictamen_actual": "no enviar todavía",
+    "bloqueante": "Ninguna producción citable consultada muestra una segunda persona afiliada. ROR excluye explícitamente organizaciones unipersonales.",
+    "brechas_altas": [
+      "Dominio institucional propio inexistente",
+      "Cuatro variantes de cadena de afiliación en circulación",
+      "ISNI publicado sin verificar su tipo de entidad",
+      "Empleo del fundador cerrado en el registro ORCID"
+    ],
+    "evidencia_publicada": [
+      "https://zenodo.org/api/records?q=%22TAMV%20Online%20Network%22",
+      "https://api.datacite.org/dois?query=%22TAMV%20Online%20Network%22",
+      "https://api.openalex.org/works?filter=raw_affiliation_strings.search:TAMV",
+      "https://pub.orcid.org/v3.0/0009-0008-5050-1539/record"
+    ]
+  }
+}

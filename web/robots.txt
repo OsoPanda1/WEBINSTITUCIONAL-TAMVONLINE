@@ -1,0 +1,5 @@
+# Sitio
+Sitemap: https://tamvonline-t78x4mdi9wa.qoder.website/sitemap.xml
+
+User-agent: *
+Allow: /

@@ -1,0 +1,19 @@
+# Lista blanca de restos del idioma fuente para tools/i18n.mjs audit.
+# Un regex por linea; las lineas con # se ignoran. Aqui van SOLO nombres
+# propios, denominaciones legales y lemas que se publican con su grafia
+# original en todos los idiomas. Esta lista sustituye la que antes estaba
+# fijada dentro del script.
+#
+# Regla: un aviso se resuelve traduciendo el texto, o liberando un nombre
+# propio concreto. Nunca ampliando i18n/residue-patterns.txt, porque eso
+# ocultaria texto sin traducir.
+
+mineral\s+del\s+monte
+real\s+del\s+monte
+tecnolog[íi]a\s+avanzada\s+mexicana\s+vers[áa]til
+conocimiento\s+que\s+perdura
+director\s+general\s+de\s+proyectos
+ceo\s+fundador
+ley\s+federal\s+de\s+protecci[óo]n\s+de\s+datos\s+personales
+en\s+posesi[óo]n\s+de\s+los\s+particulares
+visit[ao]?re[áa]ldelmonte

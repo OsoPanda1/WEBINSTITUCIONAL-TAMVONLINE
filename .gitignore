@@ -1,0 +1,27 @@
+# ── No es fuente del sitio ────────────────────────────────────────────────
+# Descriptor de despliegue de Qoder Sites: IDs de site/deployment y hashes de
+# un artefacto concreto. Cambia en cada publicación y solo sirve para una.
+.TAMV Online Network.qoder.site
+
+# Copias de seguridad del generador y borradores de una sola corrida.
+*.bak
+scratch/
+
+# Herramientas desechables de marca / Open Graph: HTML con datos base64
+# (brand-harness.html pesa 2,17 MB) y registros de un servidor local.
+tools/*-harness*.html
+tools/*.log
+
+# ── Confidencial ──────────────────────────────────────────────────────────
+# Documentos de trabajo con análisis de la cuenta de GitHub (nombra
+# repositorios privados) y borradores de correspondencia con terceros.
+# Si algún día quieres versionar uno: git add -f docs/<archivo>
+docs/
+attachments/
+
+# ── Sistema y dependencias ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+*.tmp
