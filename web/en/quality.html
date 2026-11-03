@@ -504,6 +504,46 @@ Estado: Publicado y sujeto a corrección pública</code></pre>
     </div>
   </section>
 
+  <section class="section alt" id="vetra-log">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">10 — Audit log</span><h2>Public VETRA audit log</h2></div>
+        <p>Every audit report issued over a document evaluated with the VETRA framework is settled into a public, append-only log chained with SHA256. As of this record the log is open and empty: the mechanism exists and is verifiable, the entries do not yet.</p>
+      </div>
+      <div class="table-scroll" data-label="Verifiable state of the VETRA audit log">
+        <table>
+          <caption>State of <a href="../auditoria/vetra-log.json" rel="noopener">auditoria/vetra-log.json</a>, opened on 2026-11-03 and consulted on 2026-11-03.</caption>
+          <thead><tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">How to check it</th></tr></thead>
+          <tbody>
+            <tr><td>Entries recorded</td><td><b>0</b></td><td>The <code>counts.entries</code> field in the file, or <code>node tools/vetra-log.mjs verify</code> against the source published in <a href="https://github.com/OsoPanda1/WEBINSTITUCIONAL-TAMVONLINE" rel="noopener noreferrer" target="_blank">the site repository</a>.</td></tr>
+            <tr><td>Entries with a human signature</td><td><b>0</b></td><td><code>counts.signed</code>. An entry without a valid signature is a draft, not an official record.</td></tr>
+            <tr><td>Authorized signers</td><td><b>0</b></td><td>The <code>signers</code> list in the file. With the list empty, no entry can validate: that is today's honest state.</td></tr>
+            <tr><td>Chaining</td><td>SHA256, link by link</td><td>Each entry stores the digest of the evaluated document and the hash of the previous entry; the series anchor is <code>GENESIS:1175df2184e0fcb…</code>.</td></tr>
+            <tr><td>Signature scheme</td><td>ED25519</td><td>The signature is verified against the public key published in the same file, not against a promise.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rule-label">What the log proves and what it does not</div>
+      <div class="grid g2">
+        <article class="card">
+          <span class="idx">Proves</span>
+          <h3>That the agent cannot sign alone</h3>
+          <p>The identity <code>Isabella Villaseñor AI</code> is registered in the file itself as <code>draft_only</code>, with read, hash and draft permissions and no possible private key. By design the tool rejects any entry signed by that identity or by a signer absent from <code>signers</code>. Anyone doubting it can try: <code>node tools/vetra-log.mjs selftest</code> runs the ten rejections with a synthetic key and never writes to the public log.</p>
+        </article>
+        <article class="card">
+          <span class="idx">Does not prove</span>
+          <h3>That external audits exist</h3>
+          <p>The listed entries are audit reports registered with a human signature; each links its document and its digest.</p>
+        </article>
+      </div>
+      <div class="note" style="margin-top:22px">
+        <h4>Cryptographic seal: what is declared and what is withheld</h4>
+        <p>The log uses SHA256 over the evaluated document and a human Ed25519 signature because those are the primitives a reader can verify against published source. BookPI root, SHA3-512 and any "VETRA Seal" are <b>not</b> issued: the published methodology withdraws them while the entity has no persistent identifiers of its own and no external ledger to anchor them in. A self-issued hash is not an authenticity seal: without a chain a third party can reproduce, it only proves that whoever wrote the page had that file.</p>
+      </div>
+      <p class="mono-note" style="margin-top:16px">Replication: <code>git clone https://github.com/OsoPanda1/WEBINSTITUCIONAL-TAMVONLINE</code> · <code>node tools/vetra-log.mjs verify</code> · <code>node tools/vetra-log.mjs selftest</code>.</p>
+      <p style="margin-top:16px"><a class="btn btn-line" href="governance.html">How a report is approved before it is registered</a></p>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">

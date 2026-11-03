@@ -504,6 +504,46 @@ Estado: Publicado y sujeto a corrección pública</code></pre>
     </div>
   </section>
 
+  <section class="section alt" id="vetra-log">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-num">10 — Bitácora</span><h2>Registro público de auditorías VETRA</h2></div>
+        <p>Todo informe de auditoría emitido sobre un documento evaluado con el marco VETRA se asienta en una bitácora pública, aditiva y encadenada con SHA256. A la fecha de esta ficha la bitácora está abierta y vacía: el mecanismo existe y es verificable, los registros todavía no.</p>
+      </div>
+      <div class="table-scroll" data-label="Estado verificable de la bitácora VETRA">
+        <table>
+          <caption>Estado de <a href="auditoria/vetra-log.json" rel="noopener">auditoria/vetra-log.json</a>, abierto el 2026-11-03 y consultado el 2026-11-03.</caption>
+          <thead><tr><th scope="col">Campo</th><th scope="col">Valor</th><th scope="col">Cómo se comprueba</th></tr></thead>
+          <tbody>
+            <tr><td>Entradas registradas</td><td><b>0</b></td><td>El campo <code>counts.entries</code> del archivo, o <code>node tools/vetra-log.mjs verify</code> sobre el fuente publicado en <a href="https://github.com/OsoPanda1/WEBINSTITUCIONAL-TAMVONLINE" rel="noopener noreferrer" target="_blank">el repositorio del sitio</a>.</td></tr>
+            <tr><td>Entradas con firma humana</td><td><b>0</b></td><td><code>counts.signed</code>. Una entrada sin firma válida es un borrador, no un registro oficial.</td></tr>
+            <tr><td>Firmantes autorizados</td><td><b>0</b></td><td>La lista <code>signers</code> del archivo. Con la lista vacía ninguna entrada puede validar: es el estado honesto de hoy.</td></tr>
+            <tr><td>Encadenado</td><td>SHA256, eslabón a eslabón</td><td>Cada entrada guarda el digesto del documento evaluado y el hash de la entrada anterior; el ancla de la serie es <code>GENESIS:1175df2184e0fcb…</code>.</td></tr>
+            <tr><td>Esquema de firma</td><td>ED25519</td><td>La firma se verifica contra la clave pública publicada en el propio archivo, no contra una promesa.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rule-label">Qué demuestra la bitácora y qué no</div>
+      <div class="grid g2">
+        <article class="card">
+          <span class="idx">Demuestra</span>
+          <h3>Que el agente no puede firmar solo</h3>
+          <p>La identidad <code>Isabella Villaseñor AI</code> está registrada en el propio archivo como <code>draft_only</code>, con permisos de lectura, cálculo de hash y borrador, y sin clave privada posible. La herramienta rechaza por diseño cualquier entrada firmada por esa identidad o por un firmante que no esté en <code>signers</code>. Quien duda puede intentarlo: <code>node tools/vetra-log.mjs selftest</code> ejecuta los diez rechazos con una clave sintética y no escribe en la bitácora pública.</p>
+        </article>
+        <article class="card">
+          <span class="idx">No demuestra</span>
+          <h3>Que existan auditorías externas</h3>
+          <p>Las entradas listadas son informes de auditoría registrados con firma humana; cada una enlaza su documento y su digesto.</p>
+        </article>
+      </div>
+      <div class="note" style="margin-top:22px">
+        <h4>Sello criptográfico: lo que se declara y lo que se retiene</h4>
+        <p>La bitácora usa SHA256 sobre el documento evaluado y firma Ed25519 humana porque son las primitivas que se pueden verificar con el fuente publicado. <b>No</b> se emiten sellos de tipo BookPI raíz, SHA3-512 ni «VETRA Seal»: la metodología publicada los retira mientras la entidad no tenga identificadores persistentes propios ni un logarítmico externo donde anclarlos. Un hash propio no es un sello de autenticidad: sin una cadena que un tercero pueda reproducir, solo prueba que quien escribió la página tenía ese archivo.</p>
+      </div>
+      <p class="mono-note" style="margin-top:16px">Replicación: <code>git clone https://github.com/OsoPanda1/WEBINSTITUCIONAL-TAMVONLINE</code> · <code>node tools/vetra-log.mjs verify</code> · <code>node tools/vetra-log.mjs selftest</code>.</p>
+      <p style="margin-top:16px"><a class="btn btn-line" href="gobernanza.html">Cómo se aprueba un informe antes de registrarlo</a></p>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">

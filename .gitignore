@@ -13,6 +13,10 @@ tools/*-harness*.html
 tools/*.log
 
 # ── Confidencial ──────────────────────────────────────────────────────────
+# Claves humanas de la bitácora VETRA. La parte privada nunca se commitea: la
+# que se publica es la clave pública, dentro de web/auditoria/vetra-log.json.
+secrets/
+
 # Documentos de trabajo con análisis de la cuenta de GitHub (nombra
 # repositorios privados) y borradores de correspondencia con terceros.
 # Si algún día quieres versionar uno: git add -f docs/<archivo>

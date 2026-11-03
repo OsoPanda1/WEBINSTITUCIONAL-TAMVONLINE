@@ -1,0 +1,48 @@
+{
+  "format": "TAMV-VETRA-AUDITLOG/1",
+  "organization": "TAMV Online Network",
+  "purpose_es": "Registro público, aditivo y encadenado de los informes de auditoría emitidos sobre documentos evaluados con el marco VETRA y los estándares TQAF.",
+  "purpose_en": "A public, append-only, hash-chained record of audit reports issued over documents evaluated with the VETRA framework and the TQAF standards.",
+  "opened_on": "2026-11-03",
+  "updated_on": "2026-11-03",
+  "hash_function": "sha256",
+  "signature_scheme": "ed25519",
+  "canonicalization": "llaves ordenadas lexicográficamente, sin espacios; hash sobre la entrada sin `hash` ni `signature`; firma sobre los bytes UTF-8 del hash",
+  "policy": {
+    "append_only": true,
+    "chain_required": true,
+    "requires_human_signature": true,
+    "agent_may_sign": false,
+    "note_es": "Una entrada sin firma humana válida no es un registro oficial: es un borrador. Ninguna herramienta del agente puede emitir una entrada válida por sí sola.",
+    "note_en": "An entry without a valid human signature is not an official record: it is a draft. No agent tool can mint a valid entry on its own."
+  },
+  "signers": [],
+  "draft_only_identities": [
+    {
+      "id": "isabella-ai",
+      "name": "Isabella Villaseñor AI",
+      "kind": "ai_agent",
+      "may_sign": false,
+      "permissions": [
+        "read",
+        "hash",
+        "draft"
+      ],
+      "no_permissions": [
+        "sign",
+        "append_official",
+        "merge",
+        "delete_record"
+      ],
+      "note_es": "El agente calcula el digesto del documento y redacta el borrador del informe. La entrada sólo existe si una clave humana registrada la firma.",
+      "note_en": "The agent computes the document digest and drafts the report. The entry exists only once a registered human key signs it."
+    }
+  ],
+  "entries": [],
+  "counts": {
+    "entries": 0,
+    "signed": 0,
+    "unsigned": 0
+  },
+  "reproduce": "node tools/vetra-log.mjs verify"
+}
