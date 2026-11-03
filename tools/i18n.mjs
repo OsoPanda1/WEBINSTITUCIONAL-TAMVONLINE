@@ -223,6 +223,10 @@ export function createSite({ webDir, i18nDir, allowFile, patternFile } = {}) {
     const xd = pathFor(key, X_DEFAULT);
     if (xd) lines.push(`  <link rel="alternate" hreflang="x-default" href="{${absUrl(xd)}}">`);
     if (BASE) lines.push(`  <link rel="canonical" href="{${absUrl(pathFor(key, code))}}">`);
+    /* RFC 6579: la relacion sitemap declara el medio del recurso desde el
+       propio documento. Donde el host no fija Content-Type para .xml, esta linea
+       es la unica capa del repositorio que puede afirmar el tipo del mapa. */
+    lines.push(`  <link rel="sitemap" type="application/xml" title="${loc.sitemap_title ?? 'Site map'}" href="/sitemap.xml">`);
     lines.push(END);
     return materialise(lines.join('\n'), fromRel);
   }
