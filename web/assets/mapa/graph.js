@@ -489,14 +489,14 @@ window.TAMV_GRAPH = {
       es: {
         name: 'Higiene del acervo de código',
         cls: 'Inventario auditado, remediación pendiente',
-        what: 'La cuenta pública registraba 142 repositorios el 2026-11-02 (102 propios y 40 forks; 143 tras crear el del sitio). La auditoría encontró licencia en el 18 % de los casos, temas en el 7 %, cero contribuciones humanas externas en 677 commits analizados, un 31 % de commits firmados por bots de construcción, `CITATION.cff` en solo 2 repositorios y ninguna release: por eso no existe ningún DOI emitido desde GitHub.',
+        what: 'La cuenta pública registraba 143 repositorios públicos el 2026-11-02 (103 propios y 40 forks, incluido el repositorio del propio sitio). La auditoría encontró licencia en el 18 % de los casos, temas en el 7 %, cero contribuciones humanas externas en 677 commits analizados, un 31 % de commits firmados por bots de construcción, `CITATION.cff` en solo 2 repositorios y ninguna release: por eso no existe ningún DOI emitido desde GitHub.',
         risk: 'Alto para citabilidad: sin versiones ni CITATION no hay citación estable del código, y sin revisores externos no hay evidencia de comunidad técnica.',
         next: 'Fijar una lista "core", versionar con etiqueta anotada y conectar Zenodo para que cada release emita DOI; archivar o pasar a privado los experimentos, declarando cuáles.'
       },
       en: {
         name: 'Code corpus hygiene',
         cls: 'Audited inventory, remediation pending',
-        what: 'The public account registered 142 repositories on 2026-11-02 (102 own and 40 forks; 143 after creating the site repository). The audit found a licence in 18 % of cases, topics in 7 %, zero external human contributions across 677 analysed commits, 31 % of commits signed by build bots, `CITATION.cff` in only 2 repositories and no release: which is why no DOI has been issued from GitHub.',
+        what: 'The public account registered 143 public repositories on 2026-11-02 (103 own and 40 forks, including the site repository itself). The audit found a licence in 18 % of cases, topics in 7 %, zero external human contributions across 677 analysed commits, 31 % of commits signed by build bots, `CITATION.cff` in only 2 repositories and no release: which is why no DOI has been issued from GitHub.',
         risk: 'High for citability: without versions or CITATION there is no stable citation of the code, and without external reviewers no evidence of a technical community.',
         next: 'Fix a "core" list, tag annotated releases and connect Zenodo so each release emits a DOI; archive or privatise the experiments, declaring which.'
       },
