@@ -198,7 +198,16 @@ const JSONLD_ALIAS = ['web/organization.json',
   '        "TAMV ONLINE",\n        "Red TAMV Online Network"',
   '        "TAMV ONLINE",\n        "TAMV ONLINE NETWORK",\n        "Red TAMV Online Network"'];
 
-for (const r of [NAME_ROW_ES, NAME_ROW_EN, JSONLD_ALIAS]) RULES.push(r);
+/* ── ror-record-draft.json: el recuento de brechas también estaba viejo ──── *
+ * El borrador del registro ROR seguía anunciando «cuatro variantes» mientras las
+ * páginas ya listaban siete. Es el mismo árbol, servido como JSON público, y un
+ * curador lo descarga: una cifra distinta por canal es exactamente el defecto
+ * que esta auditoría vino a cerrar. */
+const DRAFT_GAP_COUNT = ['web/ror-record-draft.json',
+  '      "Cuatro variantes de cadena de afiliación en circulación",',
+  '      "Siete variantes de cadena de afiliación en circulación, verificadas el 2026-11-02",'];
+
+for (const r of [NAME_ROW_ES, NAME_ROW_EN, JSONLD_ALIAS, DRAFT_GAP_COUNT]) RULES.push(r);
 
 const byFile = new Map();
 for (const [f, from, to] of RULES) {
