@@ -26,6 +26,7 @@
     "alternateName": [
       "TAMV",
       "TAMV ONLINE",
+      "TAMV ONLINE NETWORK",
       "Red TAMV Online Network"
     ],
     "url": "https://tamvonline-t78x4mdi9wa.qoder.website/index.html",
@@ -257,7 +258,7 @@
           <span class="idx">Line 04</span>
           <h3>Research and open science</h3>
           <p><b>Declared scope:</b> sources, methods, results, persistent identifiers and citable digital artifacts.</p>
-          <p><b>Current maturity:</b> 23 records in Zenodo and 18 DOIs in DataCite with CC BY 4.0 license and sole authorship; 3 articles in Figshare without an affiliation field; 2 public nodes in OSF with verified ORCID. It is the line with the most deposits and the one that shows the collective-evidence gap most clearly.</p>
+          <p><b>Current maturity:</b> 23 Zenodo records under the query <code>"TAMV Online Network"</code> (25 under <code>"TAMV ONLINE"</code>) and 44 DOIs in DataCite whose affiliation field contains TAMV, with CC BY 4.0 license and sole authorship; 3 articles in Figshare without an affiliation field; 2 public nodes in OSF with verified ORCID. It is the line with the most deposits and the one that shows the collective-evidence gap most clearly.</p>
           <p class="mono-note">State: active deposits; affiliation and co-authorship to be normalized. <span class="tag tag-warn">Active with gaps</span></p>
         </article>
       </div>
@@ -324,7 +325,7 @@
       </div>
       <div class="grid g4">
         <div class="metric"><b>23</b><span>records in Zenodo · sole authorship · CC BY 4.0</span><span class="src">zenodo.org · 2026-11-01</span></div>
-        <div class="metric"><b>18</b><span>DOIs in DataCite with declared affiliation</span><span class="src">api.datacite.org · 2026-11-01</span></div>
+        <div class="metric"><b>44</b><span>DOIs in DataCite whose affiliation field contains TAMV: 22 works, each with its concept DOI and its version DOI</span><span class="src">api.datacite.org · 2026-11-02 · query <code>creators.affiliation.name:TAMV</code></span></div>
         <div class="metric"><b>3</b><span>articles in Figshare without an affiliation field</span><span class="src">api.figshare.com · 2026-11-01</span></div>
         <div class="metric"><b>2</b><span>public nodes in OSF · single contributor</span><span class="src">api.osf.io · 2026-11-01</span></div>
       </div>
@@ -435,10 +436,10 @@
           <caption>Findings of the audit of public sources of 2026-11-01. Each state describes the action required, not a quality assessment.</caption>
           <thead><tr><th scope="col">Limitation</th><th scope="col">Finding verified on 2026-11-01</th><th scope="col">State</th></tr></thead>
           <tbody>
-            <tr><td>Sole authorship</td><td>The 23 Zenodo records, the 18 DataCite DOIs, the 2 OSF nodes and the <code>CITATION.cff</code> files reviewed name a single person as creator or contributor.</td><td><span class="tag tag-block">Blocking</span></td></tr>
-            <tr><td>Inconsistent affiliation</td><td>The strings <code>TAMV ONLINE</code> and <code>TAMV ONLINE NETWORK</code> coexist in the deposits with metadata; the 3 Figshare articles have no affiliation field.</td><td><span class="tag tag-warn">In normalization</span></td></tr>
+            <tr><td>Sole authorship</td><td>The 23 Zenodo records, the 44 DataCite DOIs, the 2 OSF nodes and the <code>CITATION.cff</code> files reviewed name a single person as creator or contributor.</td><td><span class="tag tag-block">Blocking</span></td></tr>
+            <tr><td>Inconsistent affiliation</td><td>Across the 44 DataCite DOIs with a TAMV affiliation, the string is <code>TAMV ONLINE NETWORK</code> in 38, <code>TAMV ONLINE</code> in 2, <code>tamv online network</code> in 2 and <code>TAMV ONLINEE NETWORK</code> (a typo) in 2. The <code>publisher</code> field holds four different values: <code>zenodo | TAMV Online | Figshare</code> in 28, <code>Zenodo</code> in 10, <code>zenodo | TAMV Online</code> in 4 and <code>TAMV ONLINE</code> in 2. The 3 Figshare articles have no affiliation field.</td><td><span class="tag tag-warn">In normalization</span></td></tr>
             <tr><td>External review</td><td>None of the output consulted shows identifiable peer review or independent assessment. A DOI certifies that the record exists and can be inspected; it does not certify review.</td><td><span class="tag tag-block">Absent</span></td></tr>
-            <tr><td>Software citability</td><td>0 <em>releases</em> in the GitHub account, so there is no software DOI generated from there; <code>CITATION.cff</code> present in 2 of the 8 repositories reviewed.</td><td><span class="tag tag-warn">Partial</span></td></tr>
+            <tr><td>Software citability</td><td>Full inventory of the 103 own repositories on 2026-11-02: <code>CITATION.cff</code> in 2, none archived, <code>.zenodo.json</code> and <code>codemeta.json</code> in 0. <em>Releases</em> were inspected in 17 repositories and all return 0, so there is no software DOI generated from GitHub.</td><td><span class="tag tag-warn">Partial</span></td></tr>
             <tr><td>Assessment thresholds</td><td>VETRA's numeric bands (85–100, 70–84, 50–69, 0–49) and the per-domain weights are uncalibrated pilot hypotheses, with no historical data and no measurement of agreement among reviewers.</td><td><span class="tag tag-warn">Uncalibrated</span></td></tr>
             <tr><td>Evidence of the HCU prototype</td><td>The document links no primary sources to its atoms and hyperedges. The site implementation does link one source per entity or declares the void, but the verification was carried out by the same team and no entity is above E2. A persistent graph base, a connected evidence register and a comparative test against other implementations are still missing.</td><td><span class="tag tag-neutral">Demonstration</span></td></tr>
             <tr><td>Independent replication</td><td>No works are recorded as replicated or independently reviewed by a second person outside the author team.</td><td><span class="tag tag-block">Outstanding</span></td></tr>

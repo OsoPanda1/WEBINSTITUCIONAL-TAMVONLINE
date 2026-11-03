@@ -26,6 +26,7 @@
     "alternateName": [
       "TAMV",
       "TAMV ONLINE",
+      "TAMV ONLINE NETWORK",
       "Red TAMV Online Network"
     ],
     "url": "https://tamvonline-t78x4mdi9wa.qoder.website/index.html",
@@ -229,11 +230,11 @@
     <div class="wrap">
       <div class="section-head">
         <div><span class="section-num">01 — Distribution</span><h2>Where the output is</h2></div>
-        <p>Counts obtained on 2026-11-01 by querying the public APIs of each provider. None of these numbers implies peer review.</p>
+        <p>Counts obtained on 2026-11-01 and revalidated on 2026-11-02 against the public APIs of each provider. Each figure is published together with the query that produced it: changing the searched string changes the number. None of these numbers implies peer review.</p>
       </div>
       <div class="grid g3">
         <div class="metric"><b>23</b><span>Zenodo records retrieved with the query <code>"TAMV Online Network"</code></span><span class="src">zenodo.org/api</span></div>
-        <div class="metric"><b>18</b><span>DOIs in DataCite with declared affiliation</span><span class="src">api.datacite.org</span></div>
+        <div class="metric"><b>44</b><span>DOIs in DataCite whose affiliation field contains TAMV: 22 works, each with its concept DOI and its version DOI</span><span class="src">api.datacite.org · 2026-11-02 · query <code>creators.affiliation.name:TAMV</code></span></div>
         <div class="metric"><b>3</b><span>articles in Figshare, CC BY 4.0, with no affiliation field</span><span class="src">api.figshare.com</span></div>
         <div class="metric"><b>2</b><span>public nodes in OSF with verified ORCID</span><span class="src">api.osf.io</span></div>
         <div class="metric"><b>103</b><span>own repositories in GitHub (plus 40 forks)</span><span class="src">api.github.com · 2026-11-02</span></div>
@@ -244,7 +245,7 @@
         <ul class="plain gap mb-0">
           <li>Three Zenodo deposits carry a figshare DOI in the <code>doi</code> field (records 19764563, 20314356, 20445282): the registered identifier and the actual identifier do not match.</li>
           <li>OpenAlex reassigned the affiliation of two works (W7163150261, W7163546668) to "RDM Group (United Kingdom)". The correction must be requested.</li>
-          <li>The GitHub repositories have no <em>releases</em>, so <b>there is no DOI issued by GitHub</b>, although the previous site hinted at one.</li>
+          <li>The 17 repositories inspected individually on 2026-11-02 have no <em>release</em> and no tag, so <b>there is no DOI issued by GitHub</b>, although the previous site hinted at one. The other 86 own repositories and the 40 forks were not reviewed one by one.</li>
           <li>No work published by TAMV appears in Crossref: the query results are third-party and unrelated.</li>
         </ul>
       </div>
@@ -276,7 +277,7 @@
               <td><code>TAMV ONLINE NETWORK</code> <span class="tag tag-warn">Single author</span></td>
             </tr>
             <tr>
-              <td>18 DOIs with declared affiliation in DataCite</td>
+              <td>44 DOIs whose affiliation field contains TAMV (22 works × concept + version)</td>
               <td class="mono">2026</td>
               <td class="mono">api.datacite.org</td>
               <td>CC BY 4.0 declared in the inspected records</td>
@@ -327,7 +328,7 @@
           <ul class="plain gap mb-0">
             <li><code>TAMV ONLINE</code> — appears in Zenodo deposits.</li>
             <li><code>tamv online network</code> — lowercase, detected in metadata.</li>
-            <li><code>TAMV Online Enterprise</code> — the name of a third-party account, not of this network.</li>
+            <li><code>TAMV Online Enterprise</code> and <code>TAMV ONLINE ENTERPRISE</code> — these do not come from a third party: they are the string the founder himself issues on his own GitHub profile. The query <code>search/users?q="TAMV Online Enterprise"</code> returns a single result (<code>OsoPanda1</code>) and <code>search/repositories</code> returns 0 (2026-11-02). There is no third party to disambiguate from, and it is not requested as an alias.</li>
             <li><code>Nodo Cero</code> and strings composed with "·" in <code>CITATION.cff</code>.</li>
           </ul>
         </div>

@@ -26,6 +26,7 @@
     "alternateName": [
       "TAMV",
       "TAMV ONLINE",
+      "TAMV ONLINE NETWORK",
       "Red TAMV Online Network"
     ],
     "url": "https://tamvonline-t78x4mdi9wa.qoder.website/index.html",
@@ -257,7 +258,7 @@
           <span class="idx">Línea 04</span>
           <h3>Investigación y ciencia abierta</h3>
           <p><b>Alcance declarado:</b> fuentes, métodos, resultados, identificadores persistentes y artefactos digitales citables.</p>
-          <p><b>Madurez actual:</b> 23 registros en Zenodo y 18 DOIs en DataCite con licencia CC BY 4.0 y autoría única; 3 artículos en Figshare sin campo de afiliación; 2 nodos públicos en OSF con ORCID verificado. Es la línea con más depósitos y la que muestra con más claridad la brecha de evidencia colectiva.</p>
+          <p><b>Madurez actual:</b> 23 registros en Zenodo con la consulta <code>"TAMV Online Network"</code> (25 con <code>"TAMV ONLINE"</code>) y 44 DOIs en DataCite cuyo campo de afiliación contiene TAMV, con licencia CC BY 4.0 y autoría única; 3 artículos en Figshare sin campo de afiliación; 2 nodos públicos en OSF con ORCID verificado. Es la línea con más depósitos y la que muestra con más claridad la brecha de evidencia colectiva.</p>
           <p class="mono-note">Estado: depósitos activos, afiliación y coautoría por normalizar. <span class="tag tag-warn">Activa con brechas</span></p>
         </article>
       </div>
@@ -324,7 +325,7 @@
       </div>
       <div class="grid g4">
         <div class="metric"><b>23</b><span>registros en Zenodo · autoría única · CC BY 4.0</span><span class="src">zenodo.org · 2026-11-01</span></div>
-        <div class="metric"><b>18</b><span>DOIs en DataCite con afiliación declarada</span><span class="src">api.datacite.org · 2026-11-01</span></div>
+        <div class="metric"><b>44</b><span>DOIs en DataCite cuyo campo de afiliación contiene TAMV: 22 obras, cada una con su DOI de concepto y su DOI de versión</span><span class="src">api.datacite.org · 2026-11-02 · consulta <code>creators.affiliation.name:TAMV</code></span></div>
         <div class="metric"><b>3</b><span>artículos en Figshare sin campo de afiliación</span><span class="src">api.figshare.com · 2026-11-01</span></div>
         <div class="metric"><b>2</b><span>nodos públicos en OSF · único contribuyente</span><span class="src">api.osf.io · 2026-11-01</span></div>
       </div>
@@ -435,10 +436,10 @@
           <caption>Hallazgos de la auditoría de fuentes públicas del 2026-11-01. Cada estado describe la acción requerida, no una valoración de calidad.</caption>
           <thead><tr><th scope="col">Limitación</th><th scope="col">Hallazgo verificado el 2026-11-01</th><th scope="col">Estado</th></tr></thead>
           <tbody>
-            <tr><td>Autoría única</td><td>Los 23 registros de Zenodo, los 18 DOIs de DataCite, los 2 nodos de OSF y los <code>CITATION.cff</code> revisados nombran una sola persona como creador o contribuyente.</td><td><span class="tag tag-block">Bloqueante</span></td></tr>
-            <tr><td>Afiliación inconsistente</td><td>Conviven las cadenas <code>TAMV ONLINE</code> y <code>TAMV ONLINE NETWORK</code> en los depósitos con metadato; los 3 artículos de Figshare no tienen campo de afiliación.</td><td><span class="tag tag-warn">En normalización</span></td></tr>
+            <tr><td>Autoría única</td><td>Los 23 registros de Zenodo, los 44 DOIs de DataCite, los 2 nodos de OSF y los <code>CITATION.cff</code> revisados nombran una sola persona como creador o contribuyente.</td><td><span class="tag tag-block">Bloqueante</span></td></tr>
+            <tr><td>Afiliación inconsistente</td><td>En los 44 DOIs de DataCite con afiliación TAMV, la cadena es <code>TAMV ONLINE NETWORK</code> en 38, <code>TAMV ONLINE</code> en 2, <code>tamv online network</code> en 2 y <code>TAMV ONLINEE NETWORK</code> (errata) en 2. El campo <code>publisher</code> tiene cuatro valores distintos: <code>zenodo | TAMV Online | Figshare</code> en 28, <code>Zenodo</code> en 10, <code>zenodo | TAMV Online</code> en 4 y <code>TAMV ONLINE</code> en 2. Los 3 artículos de Figshare no tienen campo de afiliación.</td><td><span class="tag tag-warn">En normalización</span></td></tr>
             <tr><td>Revisión externa</td><td>Ninguna producción consultada muestra revisión por pares o evaluación independiente identificable. Un DOI acredita que el registro existe y puede inspeccionarse; no acredita revisión.</td><td><span class="tag tag-block">Ausente</span></td></tr>
-            <tr><td>Citabilidad del software</td><td>0 <em>releases</em> en la cuenta GitHub, por lo que no hay DOI de software generado desde ahí; <code>CITATION.cff</code> presente en 2 de los 8 repositorios revisados.</td><td><span class="tag tag-warn">Parcial</span></td></tr>
+            <tr><td>Citabilidad del software</td><td>Inventario completo de los 103 repositorios propios el 2026-11-02: <code>CITATION.cff</code> en 2, ninguno archivado, <code>.zenodo.json</code> y <code>codemeta.json</code> en 0. Las <em>releases</em> se inspeccionaron en 17 repositorios y todas devuelven 0, por lo que no hay DOI de software generado desde GitHub.</td><td><span class="tag tag-warn">Parcial</span></td></tr>
             <tr><td>Umbrales de evaluación</td><td>Las bandas numéricas de VETRA (85–100, 70–84, 50–69, 0–49) y los pesos por dominio son hipótesis de piloto sin calibrar, sin datos históricos y sin medir concordancia entre revisores.</td><td><span class="tag tag-warn">Sin calibrar</span></td></tr>
             <tr><td>Evidencia del prototipo HCU</td><td>El documento no enlaza fuentes primarias a sus átomos e hiperaristas. La implementación del sitio sí enlaza una fuente por entidad o declara el vacío, pero la verificación la ejecutó el propio equipo y ninguna entidad supera E2. Persisten la ausencia de base gráfica persistente, de registro de evidencia conectado y de prueba comparativa frente a otras implementaciones.</td><td><span class="tag tag-neutral">Demostración</span></td></tr>
             <tr><td>Réplica independiente</td><td>No se registran trabajos replicados o revisados de forma independiente por una segunda persona fuera del equipo autor.</td><td><span class="tag tag-block">Pendiente</span></td></tr>
