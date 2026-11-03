@@ -1,0 +1,241 @@
+/* ── utilidad: etiqueta accesible sin ruido visual (no existe en site.css) ───────── */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+/* TAMV Online Network — HCU Living Universe
+   Hoja de la página del mapa. Reutiliza las variables de site.css: el campo
+   oscuro es la familia "night/void" de la marca, no un tema distinto.
+   Nada de esto es decorativo-independiente: cada capa del canvas tiene su
+   leyenda y su equivalente en DOM (mapa accesible sin JavaScript). */
+
+.hcu-stage {
+  position: relative;
+  height: clamp(430px, 68vh, 720px);
+  margin-top: 18px;
+  border: 1px solid rgba(126, 147, 171, 0.34);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 620px at 16% 6%, #0c2444 0%, rgba(3, 6, 11, 0) 62%),
+    radial-gradient(900px 700px at 84% 96%, #10273f 0%, rgba(3, 6, 11, 0) 60%),
+    linear-gradient(180deg, var(--night) 0%, var(--void) 100%);
+  color: #eaf3fb;
+  box-shadow: var(--shadow-2);
+}
+/* Sin JavaScript no hay lienzo que mostrar: el registro de la seccion 03 es la pagina.
+   La marca .js la pone el script inline del head; nunca depende del motor del mapa. */
+html:not(.js) .hcu-stage,
+html:not(.js) .hcu-controls { display: none; }
+.hcu-canvas-holder { position: absolute; inset: 0; }
+.hcu-stage canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.hcu-stage canvas[data-layer="field"] { z-index: 1; }
+.hcu-stage canvas[data-layer="net"] { z-index: 2; cursor: grab; touch-action: none; }
+.hcu-stage.is-dragging canvas[data-layer="net"] { cursor: grabbing; }
+
+.hcu-hint {
+  position: absolute; z-index: 5; left: 50%; bottom: 12px; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.09em;
+  color: rgba(158, 212, 255, 0.72); text-align: center; pointer-events: none;
+  max-width: 92%; text-wrap: balance;
+}
+
+/* ── paneles sobre el campo ─────────────────────────────────────────────── */
+.hcu-panel {
+  position: absolute; z-index: 6;
+  background: rgba(6, 17, 32, 0.9);
+  border: 1px solid rgba(126, 147, 171, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  display: flex; flex-direction: column; min-height: 0;
+}
+.hcu-index { left: 14px; top: 14px; bottom: 44px; width: min(300px, 34%); }
+.hcu-dossier { right: 14px; top: 14px; bottom: 44px; width: min(340px, 38%); }
+.hcu-panel-head {
+  padding: 10px 12px 8px; border-bottom: 1px solid rgba(126, 147, 171, 0.22);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+}
+.hcu-panel-head h3 {
+  font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--azure-soft); margin: 0;
+}
+.hcu-panel-head span { font-family: var(--mono); font-size: 0.62rem; color: rgba(158, 182, 208, 0.8); }
+.hcu-panel-body { padding: 10px 12px 12px; overflow: auto; min-height: 0; }
+.hcu-panel-body::-webkit-scrollbar { width: 7px; }
+.hcu-panel-body::-webkit-scrollbar-thumb { background: rgba(77, 166, 255, 0.32); border-radius: 9px; }
+
+.hcu-search { width: 100%; font: inherit; font-size: 0.82rem; padding: 8px 10px; border-radius: 9px;
+  color: #eaf3fb; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(126, 147, 171, 0.34); }
+.hcu-search:focus-visible { outline: 3px solid var(--azure); outline-offset: 2px; }
+.hcu-search::placeholder { color: rgba(158, 182, 208, 0.68); }
+
+.hcu-group-label {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(158, 182, 208, 0.85); margin: 12px 0 5px; display: flex; align-items: center; gap: 7px;
+}
+.hcu-group-label i { width: 9px; height: 9px; border-radius: 50%; box-shadow: 0 0 9px currentColor; }
+
+.hcu-item {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  font: inherit; font-size: 0.8rem; line-height: 1.35; color: #eaf3fb;
+  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(126, 147, 171, 0.24);
+  border-radius: 10px; padding: 7px 9px; margin-bottom: 5px;
+}
+.hcu-item:hover { border-color: var(--azure); background: rgba(77, 166, 255, 0.12); }
+.hcu-item:focus-visible { outline: 3px solid var(--azure); outline-offset: 2px; }
+.hcu-item[aria-current="true"] { border-color: var(--glow); background: rgba(111, 224, 255, 0.16); }
+.hcu-item b { display: block; font-weight: 600; }
+.hcu-item small { display: block; font-family: var(--mono); font-size: 0.62rem; color: rgba(158, 182, 208, 0.9); margin-top: 2px; }
+.hcu-item.is-hidden { display: none; }
+.hcu-item.is-void b::after { content: " ∅"; color: var(--chrome-3); }
+
+/* ficha de la entidad */
+.hcu-dossier.is-empty { display: none; }
+.hcu-dossier h4 { font-size: 0.98rem; font-family: var(--serif); font-weight: 600; margin: 0 0 4px; color: #f4fbff; }
+.hcu-dossier p { font-size: 0.8rem; line-height: 1.5; color: rgba(226, 238, 250, 0.92); margin: 0 0 9px; }
+.hcu-kv { display: flex; justify-content: space-between; gap: 10px; font-size: 0.74rem; margin: 4px 0;
+  color: rgba(158, 182, 208, 0.95); border-bottom: 1px dotted rgba(126, 147, 171, 0.28); padding-bottom: 3px; }
+.hcu-kv b { color: #eaf3fb; font-weight: 600; text-align: right; }
+.hcu-sub { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--azure-soft); margin: 14px 0 6px; }
+.hcu-src { list-style: none; margin: 0; padding: 0; }
+.hcu-src li { margin-bottom: 6px; font-size: 0.76rem; line-height: 1.4; }
+.hcu-src a { color: var(--azure-soft); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.hcu-src a:hover { color: #fff; }
+.hcu-src em { display: block; font-family: var(--mono); font-size: 0.62rem; color: rgba(158, 182, 208, 0.8); font-style: normal; }
+.hcu-close {
+  font: inherit; font-size: 0.72rem; cursor: pointer; color: #eaf3fb;
+  background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(126, 147, 171, 0.34);
+  border-radius: 8px; padding: 3px 8px;
+}
+.hcu-close:focus-visible { outline: 3px solid var(--azure); outline-offset: 2px; }
+
+.hcu-seals { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.hcu-seals li { display: grid; grid-template-columns: 1.1em 1fr; gap: 7px; font-size: 0.75rem; color: rgba(226, 238, 250, 0.9); }
+.hcu-seals li b { font-family: var(--mono); font-weight: 500; }
+.hcu-v-yes { color: #7fe6bd; }
+.hcu-v-part { color: #ffd479; }
+.hcu-v-no { color: #ff9fb0; }
+.hcu-v-na { color: rgba(158, 182, 208, 0.75); }
+
+/* Saltos del expediente a las proposiciones que cruzan la entidad */
+.hcu-flowrefs { display: grid; gap: 6px; }
+.hcu-flowref .hcu-btn { text-align: left; font-size: 0.72rem; line-height: 1.35; }
+
+/* ── barra de controles ─────────────────────────────────────────────────── */
+.hcu-controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-top: 16px; }
+.hcu-controls fieldset {
+  border: 1px solid var(--rule-2); border-radius: var(--r-md); padding: 8px 11px 10px; margin: 0;
+  background: var(--card); box-shadow: var(--shadow-1);
+}
+.hcu-controls legend { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ink-3); padding: 0 6px; }
+.hcu-btn {
+  font: inherit; font-size: 0.78rem; cursor: pointer; color: var(--ink);
+  background: var(--paper-2); border: 1px solid var(--rule-2); border-radius: 9px;
+  padding: 6px 11px; transition: background 0.15s, border-color 0.15s;
+}
+.hcu-btn:hover { background: #dce9f6; border-color: var(--azure); }
+.hcu-btn:focus-visible { outline: 3px solid var(--azure); outline-offset: 2px; }
+.hcu-btn[aria-pressed="true"] { background: var(--night-3); border-color: var(--azure); color: #eaf3fb; }
+.hcu-btn.is-lead { font-weight: 600; }
+.hcu-readout { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-3); }
+.hcu-status { margin-top: 10px; font-family: var(--mono); font-size: 0.7rem; color: var(--seal); min-height: 1.3em; }
+
+/* ── resumen calculado ──────────────────────────────────────────────────── */
+.hcu-tally { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 20px; }
+.hcu-tally div { background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-md);
+  padding: 13px 15px; box-shadow: var(--shadow-1); }
+.hcu-tally b { display: block; font-family: var(--serif); font-size: 1.9rem; line-height: 1.1; color: var(--ink); }
+.hcu-tally span { display: block; font-size: 0.82rem; color: var(--ink-3); margin-top: 3px; }
+.hcu-tally .is-alert b { color: var(--block); }
+
+/* ── leyenda ────────────────────────────────────────────────────────────── */
+.hcu-legend { list-style: none; margin: 0 0 4px; padding: 0; display: grid; gap: 8px; }
+.hcu-legend li { display: grid; grid-template-columns: 2.4em 1fr; gap: 12px; align-items: start;
+  font-size: 0.9rem; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+.hcu-legend .mark { display: flex; align-items: center; justify-content: center; font-family: var(--mono);
+  font-size: 0.78rem; font-weight: 600; color: #04101d; background: var(--azure-soft);
+  border-radius: 6px; padding: 4px 0; }
+.hcu-legend .mark.hollow { background: transparent; border: 1px dashed var(--ink-3); color: var(--ink-2); }
+.hcu-legend .mark.void { background: repeating-linear-gradient(45deg, var(--paper-2), var(--paper-2) 3px, #fff 3px, #fff 6px);
+  border: 1px solid var(--rule-2); color: var(--ink-3); }
+
+/* ── crónica ────────────────────────────────────────────────────────────── */
+.hcu-chrono { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--rule-2); }
+.hcu-chrono li { position: relative; padding: 0 0 16px 20px; }
+.hcu-chrono li::before { content: ""; position: absolute; left: -8px; top: 6px; width: 13px; height: 13px;
+  border-radius: 50%; background: var(--azure-deep); box-shadow: 0 0 0 3px var(--paper); }
+.hcu-chrono li[data-kind="previsto"]::before { background: transparent; border: 2px dashed var(--warn); }
+.hcu-chrono li[data-kind="vacio"]::before { background: var(--chrome-3); }
+.hcu-chrono .when { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--seal); }
+.hcu-chrono li[data-kind="previsto"] .when { color: var(--warn); }
+.hcu-chrono p { margin: 2px 0 0; font-size: 0.94rem; }
+.hcu-chrono .who { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-3); }
+
+/* ── flujos en DOM (lectura sin canvas) ─────────────────────────────────── */
+.hcu-flows { display: grid; gap: 14px; }
+.hcu-flow { background: var(--card); border: 1px solid var(--rule); border-left: 4px solid var(--azure);
+  border-radius: var(--r-md); padding: 15px 17px; box-shadow: var(--shadow-1); }
+.hcu-flow h3 { font-size: 1.08rem; margin-bottom: 6px; }
+.hcu-flow .type { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--seal); }
+.hcu-flow .link { display: flex; flex-wrap: wrap; gap: 6px; margin: 9px 0 11px; }
+.hcu-flow .link button { font: inherit; font-family: var(--mono); font-size: 0.7rem; cursor: pointer;
+  background: var(--paper-2); border: 1px solid var(--rule-2); border-radius: 999px; padding: 3px 10px; color: var(--ink-2); }
+.hcu-flow .link button:hover { border-color: var(--azure); background: #dce9f6; }
+.hcu-flow .link button:focus-visible { outline: 3px solid var(--azure); outline-offset: 2px; }
+.hcu-flow .link .arrow { color: var(--chrome-4); border: 0; background: none; cursor: default; padding: 3px 2px; }
+.hcu-flow .test { font-size: 0.88rem; color: var(--ink-2); background: var(--paper-2);
+  border: 1px dashed var(--rule-2); border-radius: 8px; padding: 9px 11px; margin: 0; }
+.hcu-flow .test b { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warn); }
+
+/* ── tabla sin JavaScript ───────────────────────────────────────────────── */
+.hcu-static caption { text-align: left; font-size: 0.84rem; color: var(--ink-3); padding-bottom: 7px; }
+.hcu-static th { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.hcu-static td .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: baseline; }
+
+.hcu-noscript { margin-top: 14px; }
+.hcu-fallback { border: 1px solid var(--warn-line); background: var(--warn-bg); color: var(--ink);
+  border-radius: var(--r-md); padding: 13px 15px; font-size: 0.9rem; }
+
+.hcu-integrity { display: grid; gap: 10px; }
+.hcu-integrity code { word-break: break-all; font-size: 0.76rem; }
+
+@media (max-width: 980px) {
+  .hcu-stage { height: auto; display: flex; flex-direction: column; }
+  .hcu-stage .hcu-canvas-holder { position: relative; flex: 0 0 auto; height: clamp(320px, 52vh, 460px); }
+  .hcu-stage canvas { position: absolute; }
+  .hcu-index, .hcu-dossier {
+    position: static; width: auto; inset: auto; margin: 0; border-radius: 0;
+    box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+    background: rgba(6, 17, 32, 0.96); flex: 1 1 auto;
+    border-top: 1px solid rgba(126, 147, 171, 0.3);
+    border-left: 0; border-right: 0; border-bottom: 0;
+  }
+  .hcu-panel-body { max-height: 320px; }
+  .hcu-hint { position: static; transform: none; margin: 8px 12px 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hcu-stage { background-image: linear-gradient(180deg, var(--night) 0%, var(--void) 100%); }
+}
+
+/* ── fichas de origen y registro estático (lectura sin JavaScript) ──────── */
+.hcu-flow .link a { font: inherit; font-family: var(--mono); font-size: 0.7rem; text-decoration: none; cursor: pointer;
+  background: var(--paper-2); border: 1px solid var(--rule-2); border-radius: 999px; padding: 3px 10px; color: var(--ink-2); }
+.hcu-flow .link a:hover { border-color: var(--azure); background: #dce9f6; }
+.hcu-flow .link a:focus-visible { outline: 3px solid var(--azure); outline-offset: 2px; }
+.hcu-flow .link a[aria-current="true"] { background: var(--night-3); border-color: var(--azure); color: #eaf3fb; }
+.hcu-static .hcu-open { font: inherit; font-family: var(--mono); font-size: 0.72rem; cursor: pointer;
+  background: var(--paper-2); border: 1px solid var(--rule-2); border-radius: 6px; padding: 2px 7px; color: var(--seal); }
+.hcu-static .hcu-open:hover { border-color: var(--azure); background: #dce9f6; }
+.hcu-static .hcu-open:focus-visible { outline: 3px solid var(--azure); outline-offset: 2px; }
+.hcu-static .hcu-open[aria-current="true"] { background: var(--night-3); border-color: var(--azure); color: #eaf3fb; }
+.hcu-static tr[aria-current="true"] td:first-child { box-shadow: inset 3px 0 0 var(--azure); }
+.hcu-static tr:target { background: var(--paper-2); }
+.hcu-seals-mini { font-family: var(--mono); font-size: 0.68rem; line-height: 1.55; color: var(--ink-2); }
+.hcu-src-list { margin: 0; padding-left: 1.05em; font-size: 0.85rem; }
+.hcu-src-list li { margin-bottom: 4px; }
+.hcu-src-list em { display: block; font-family: var(--mono); font-size: 0.64rem; color: var(--ink-3); font-style: normal; }
+.hcu-kv-set { display: grid; gap: 0; }
